@@ -1,0 +1,234 @@
+* {
+  box-sizing: border-box;
+}
+
+button {
+  border: none;
+  background: transparent;
+}
+
+body {
+  padding-bottom: 50px;
+  background: #e9faff;
+}
+
+#listGroup {
+  z-index: 5;
+  box-shadow: 5px 0px 5px #edf5fd !important;
+  max-height: 50vh;
+  overflow-y: scroll;
+  transition: all 0.5s ease-in-out;
+  position: sticky;
+  background: white;
+  top: 0;
+  margin-top: -10px;
+  margin-bottom: 5px;
+}
+#listGroup a {
+  justify-content: space-between;
+  cursor: pointer;
+}
+#listGroup a ~ button {
+  outline: none;
+}
+
+.card {
+  box-shadow: 0px 0px 4px lightblue;
+}
+.card:hover {
+  box-shadow: 0px 0px 10px lightblue;
+}
+.card:hover img {
+  height: 162px;
+  transition: 500ms;
+}
+.card:hover .card-text {
+  transition: 500ms;
+  margin-bottom: 6px;
+}
+
+.card-text {
+  transition: 500ms;
+}
+
+.card img {
+  height: 150px;
+  object-fit: cover;
+  box-shadow: 0px 3px 3px lightgrey;
+  transition: 500ms;
+}
+
+#Warn,
+#modalWarn {
+  display: none;
+  background: #ffbebe;
+  border-radius: 5px;
+  color: #000258;
+}
+
+#addListForm {
+  display: none;
+  background: #f1f6f7;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+#addListForm div {
+  display: flex;
+}
+#addListForm input {
+  border: none;
+  background: transparent;
+  outline: none;
+  padding-left: 10px;
+  width: 80%;
+}
+#addListForm button {
+  margin-left: auto;
+  width: 20%;
+}
+
+#addCardDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-body {
+  padding: 0.25rem;
+}
+
+.flex1 {
+  flex: 1;
+  max-width: 100%;
+}
+
+#leftNav {
+  box-shadow: 0px 6px 5px #edf5fd !important;
+  z-index: 10;
+  position: sticky;
+  top: 0;
+  font-size: 20px;
+}
+
+#searchForm {
+  width: 100%;
+  background: #f1f6f7;
+  border-radius: 10px;
+}
+#searchForm input {
+  width: 90%;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+#searchForm button {
+  color: #657482;
+  margin-right: 10px;
+}
+
+.orderSection {
+  padding: 0;
+  box-shadow: -5px 0px 5px #edf5fd !important;
+  max-height: 50vh;
+  overflow-y: scroll;
+  position: fixed;
+  top: 48px;
+  right: 0;
+  width: 400px;
+}
+.orderSection #orderHeader {
+  max-height: 50px;
+  font-size: 20px;
+  background: #ffffff;
+  position: sticky;
+}
+.orderSection #orderList {
+  background: #ffffff;
+}
+.orderSection .list-group div {
+  width: 50%;
+}
+.orderSection .info {
+  text-align: left;
+}
+.orderSection .lightBtn {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  background: #cdd8dd;
+  padding: 0;
+  font-size: 20px;
+  border-radius: 2px;
+}
+.orderSection .cardQty {
+  width: 30px;
+  height: 30px;
+  border: 0.8px solid #cdd8dd;
+  border-radius: 2px;
+  font-size: 20px;
+}
+.orderSection #orderFooter {
+  position: sticky;
+  bottom: 0;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: auto auto auto auto auto auto;
+  background: white;
+}
+.orderSection #orderFooter button {
+  background: #cdd8dd;
+  border-radius: 5px;
+  width: 100%;
+}
+.orderSection #orderFooter .bg-primary {
+  grid-column: 4/7;
+  color: white;
+}
+
+.orderCollapse {
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  transition: 0.5s;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px black !important;
+  right: 10px;
+  top: 60px;
+}
+.orderCollapse #listShower {
+  margin-right: 10px;
+  text-shadow: 0.25px 0.25px 1px grey;
+  outline: none;
+}
+.orderCollapse #orderFooter {
+  position: unset;
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    font-size: 0.85rem;
+  }
+
+  body {
+    background: #e9faff;
+  }
+
+  #mainGroup .filterable {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 0.5rem !important;
+  }
+  #mainGroup .filterable img {
+    height: 100px;
+  }
+
+  .orderSection {
+    width: 100%;
+  }
+
+  .orderCollapse {
+    width: 45px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

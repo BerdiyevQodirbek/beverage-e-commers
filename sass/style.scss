@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+button {
+    border: none;
+    background: transparent;
+}
+body {
+    padding-bottom: 50px;
+    background: rgb(233, 250, 255)
+}
+
+
+
+@import '_leftMain'; 
+@import '_leftNav'; 
+@import '_orderSection'; 
+@import '_orderCollapse'; 
+@import 'media/media'

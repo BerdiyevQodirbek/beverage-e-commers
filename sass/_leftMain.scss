@@ -1,0 +1,93 @@
+
+#listGroup {
+    z-index: 5;
+    box-shadow: 5px 0px 5px #edf5fd !important;
+    max-height: 50vh;
+    overflow-y: scroll;
+    transition: all 0.5s ease-in-out;
+    position: sticky;
+    background: white;
+    top: 0;
+    margin-top: -10px;
+    margin-bottom: 5px;
+
+    a {
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    a ~ button {
+        outline: none;
+
+    }
+}
+.card {
+    box-shadow: 0px 0px 4px lightblue;
+    
+    &:hover {
+        box-shadow: 0px 0px 10px lightblue;
+
+        img {
+            height: 162px;
+            transition: 500ms;
+        }
+
+        .card-text {
+            transition: 500ms;
+            margin-bottom: 6px;
+        }
+    }
+}
+.card-text {
+    transition: 500ms;
+}
+.card img {
+    height: 150px;
+    object-fit: cover;
+    box-shadow: 0px 3px 3px lightgrey;
+    transition: 500ms;
+}
+
+#Warn,
+#modalWarn {
+    display: none;
+    background: #ffbebe;
+    border-radius: 5px;
+    color: #000258;
+}
+
+#addListForm {
+    display: none;
+    background: #f1f6f7;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    div {
+        display: flex;
+    }
+    input {
+        border: none;
+        background: transparent;
+        outline: none;
+        padding-left: 10px;
+        width: 80%;
+    }
+
+    button {
+        margin-left: auto;
+        width: 20%;
+    }
+}
+#addCardDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-body {
+    padding: 0.25rem;
+}
+.flex1 {
+    flex: 1;
+    max-width: 100%;
+}
+

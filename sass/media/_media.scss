@@ -1,0 +1,23 @@
+@media screen and (max-width: 600px) {
+    :root {
+        font-size: 0.85rem;
+    }
+    body{
+        background:#e9faff;
+    }
+    #mainGroup .filterable {
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-bottom: 0.5rem !important;
+
+        img {
+            height: 100px;
+        }
+    }
+    .orderSection {
+        width: 100%;
+    }
+    .orderCollapse {
+        width: 45px;
+    }
+  }

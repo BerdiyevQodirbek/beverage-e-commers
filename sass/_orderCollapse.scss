@@ -1,0 +1,20 @@
+.orderCollapse {
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    transition: 0.5s;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px black !important;
+    right: 10px;
+    top: 60px;
+
+    #listShower {
+        margin-right: 10px;
+        text-shadow: 0.25px 0.25px 1px grey;
+        outline: none;
+    }
+    #orderFooter {
+        position: unset;
+    }
+}
+

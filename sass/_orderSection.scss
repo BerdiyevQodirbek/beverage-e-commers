@@ -1,0 +1,61 @@
+.orderSection {
+    padding: 0;
+    box-shadow: -5px 0px 5px #edf5fd !important;
+    max-height: 50vh;
+    overflow-y: scroll;
+    position: fixed;
+    top: 48px;
+    right: 0;
+    width: 400px;
+
+    #orderHeader {
+        max-height: 50px;
+        font-size: 20px;
+        background: #ffffff;
+        position: sticky;
+    }
+    #orderList {
+        background: #ffffff;
+    }
+    .list-group div {
+        width: 50%;
+    }
+    .info{
+        text-align: left;
+    }
+    .lightBtn {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        background: #cdd8dd;
+        padding: 0;
+        font-size: 20px;
+        border-radius: 2px;
+    }
+    .cardQty {
+        width: 30px;
+        height: 30px;
+        border: 0.8px solid #cdd8dd;
+        border-radius: 2px;
+        font-size: 20px
+    }
+    #orderFooter {
+    position: sticky;
+    bottom: 0;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: auto auto auto auto auto auto;
+    background: white;
+
+    button {
+        background: #cdd8dd;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    .bg-primary {
+        grid-column: 4 / 7;
+        color: white;
+    }
+}
+}
