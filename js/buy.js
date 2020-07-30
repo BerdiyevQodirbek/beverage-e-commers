@@ -48,7 +48,7 @@ function buy(el) {
                 </li>` 
                 const total = items[i].qty * items[i].price;
                 totaldoc.innerText = +total + +totaldoc.innerText    
-                document.getElementById("totalOrders").innerText = `Carts(${items.length})`
+                document.getElementById("totalOrders").innerText = `${items.length}`
             }
             document.getElementById("listShower").style.textShadow = '0px 0px 3px black'
         })
@@ -68,7 +68,8 @@ function manageQty(el) {
     var parentd = el.closest("div");
     var {id} = el.dataset
     var qty = parentd.getElementsByClassName("cardQty")[0]
-    var ref = firestore.collection('admins').doc('user').get().then(data => {
+    var ref = firestore.collection('admins').doc('user');
+    ref.get().then(data => {
         var items = data.data().items;
         firestore.collection("Beverage").doc(id)
         .get().then(mainData => {
@@ -83,18 +84,16 @@ function manageQty(el) {
                         }
                         return item;
                     });
-                    firestore.collection('admins').doc('user').set({items: updatedValue});
+                    ref.set({items: updatedValue});
     
                 } else {
                     el.closest("li").remove()
-                    var remuveValue = items.map(item => {
-                        if(item.id == id){
-                            var rv=  items.indexOf(item)
-                            console.log(rv);
-                        }
-                        // return item;
-                    });
-    
+                    var filtered = items.filter((item) => {
+                        // document.getElementById("totalPrice").innerText -= item.price
+                        return item.id != id
+                    })
+                    document.getElementById("totalOrders").innerText -=  1
+                    ref.set({items: filtered})
                 }
                 
             } else {

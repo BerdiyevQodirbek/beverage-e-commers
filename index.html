@@ -18,7 +18,7 @@
         <!--     \\\\\\\\\\   L E F T     N A V B A R   //////////     -->
         <div class="row p-2 shadow-sm bg-white rounded" id="leftNav">
           <div class="col-4 d-flex text-primary justify-content-between">
-              <button onclick="setTimeout(expand, 600) " data-toggle="collapse" data-target="#listGroup" id="sideShower">
+              <button onclick="setTimeout(expand, 600)" data-toggle="collapse" data-target="#listGroup" id="sideShower">
                   <i class="ti-menu"></i>
               </button>
               <span>Logo</span>
@@ -188,7 +188,9 @@
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="HistoryOfModal">Sales</h5>
+                    <h5 class="modal-title" id="HistoryOfModal">Sales
+                      <button onclick="clearHistory()" class="btn ml-3 btn-outline-warning">Clear</button>
+                    </h5>
                     <button onclick="clearInner()" type="button" class="close" id="historyModal-close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -223,7 +225,9 @@
             <i class="ti-shopping-cart"></i>
           </button>
           
-          <span id="totalOrders"></span>
+          <span>Carts #
+            <span id="totalOrders"></span>
+          </span>
           <button onclick="historY()" data-toggle="modal" data-target="#ModalToHistory">
               <i class="ti-bookmark-alt"></i>
           </button>

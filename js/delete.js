@@ -4,7 +4,7 @@
 
 function remuve(el) {
     var r = confirm("Do you want to delete this card?")
-    if (r == true) {
+    if (r) {
         var el;
         var {id, img} = el.dataset;
         var parent = el.closest(".filterable")

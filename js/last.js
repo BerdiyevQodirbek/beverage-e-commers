@@ -43,20 +43,24 @@ function sell() {
 // Show history from firebase sales 
 
 function historY() {
+    document.getElementById('tbody').innerHTML = ""
     var historyRef = firestore.collection("Sales").doc("users").collection('items')
     historyRef.get().then(data => {
         data.forEach(doc => {
             var item = doc.data().items
             for (let i = 0; i < item.length; i++) {
-                document.getElementById('tbody').innerHTML +=
+                document.getElementById('tbody').insertAdjacentHTML("afterbegin",
                 `<tr>
                     <td>${item[i].name}</td>
                     <td class="price">${item[i].price}</td>
                     <td>${item[i].qty}</td>
                     <td>${item[i].time}</td>
-                </tr>`
+                </tr>`)
             }
         })
+    })
+    .catch((error) => {
+        console.log(error);
     })
 
 }
@@ -83,4 +87,27 @@ function reload(el) {
 }
 function clearInner() {
     document.getElementById('tbody').innerHTML = ''
+}
+
+//  Clear history 
+function clearHistory() {
+    conf = confirm("Do you want to clear the history?")
+    if (conf) {
+        var historyRef = firestore.collection("Sales").doc("users").collection('items')
+        historyRef.get().then(data => {
+            data.forEach(doc => {
+               historyRef.doc(doc.id).delete().then(() => {
+                   document.getElementById("tbody").innerHTML = ""
+               })
+               .catch((error) => {
+                   console.log(error);
+               })
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    } else {
+        console.log("carefull");
+    }
 }
