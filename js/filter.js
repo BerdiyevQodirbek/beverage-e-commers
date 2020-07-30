@@ -43,13 +43,13 @@ function calc(el) {
                         <div class="card">
                         <img src="${fireData.imgUrl}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">${fireData.name}</h5>
+                            <h4 class="card-title">${fireData.name}</h4>
                             <p class="card-text h6">${fireData.qty} ta ${fireData.size} L</p>
-                            <p class="card-text">${fireData.price} sum</p>
+                            <p class="card-text price">${fireData.price} sum</p>
                             <div class="display-flex">
                             <button type="button" onclick="remuve(this)" data-img="${fireData.imgUrl}" data-id="${fireData.id}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                             <button type="button" onclick="editModal(this)" data-img="${fireData.imgUrl}" data-id="${item.id}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToEdit"><i class="ti-pencil-alt"></i></button>
-                            <button type="button" class="btn btn-outline-primary">Buy</button>
+                            <button type="button" onclick="buy(this)" data-img="${fireData.imgUrl}" data-id="${item.id}" class="btn btn-outline-primary">Buy</button>
                             </div>
                         </div>
                         </div>
@@ -84,13 +84,13 @@ function All(el) {
                         <div class="card">
                         <img src="${data.imgUrl}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">${data.name}</h5>
+                            <h4 class="card-title">${data.name}</h4>
                             <p class="card-text h6">${data.qty} ta ${data.size} L</p>
-                            <p class="card-text">${data.price} sum</p>
+                            <p class="card-text price">${data.price} sum</p>
                             <div class="display-flex">
                             <button type="button" onclick="remuve(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                             <button type="button"  onclick="editModal(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToEdit"><i class="ti-pencil-alt"></i></button>
-                            <button type="button" class="btn btn-outline-primary">Buy</button>
+                            <button type="button" onclick="buy(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-primary">Buy</button>
                             </div>
                         </div>
                         </div>

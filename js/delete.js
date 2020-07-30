@@ -48,7 +48,6 @@ function remove(el) {
             var id = el.dataset.id
             var parentD = el.closest("div")
             firestore.collection('BeverageCommon').doc(id).delete().then(() => {
-            console.log('Data deleted');
             })
             .catch((error) =>{
                 console.log(error);

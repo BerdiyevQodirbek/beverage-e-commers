@@ -15,13 +15,14 @@ function addCard() {
   var quantity = document.getElementById("newQuanty").value;
   var modalWarn = document.getElementById("modalWarning")
   var updatedAt = newName + Date.now();
+  modalWarn.innerText = ""
   
   if (newName == "") {
     modalWarn.innerText = 'Entir the "name!"'
     
   } else if(newPrice == "") {
     modalWarn.innerText = 'Enter the "price"'
-  } else if(quantity == "") {
+  } else if(quantity == "" || quantity == "0") {
     modalWarn.innerText = 'Enter the "quantity"'
   }else if(newImgFile == undefined) {
         var setDoc = firestore.collection("Beverage").doc(updatedAt)
@@ -39,13 +40,13 @@ function addCard() {
                   <div class="card">
                   <img src="${imgUrl}" class="card-img-top" alt="...">
                   <div class="card-body">
-                      <h5 class="card-title">${newName}</h5>
+                      <h4 class="card-title">${newName}</h4>
                       <p class="card-text h6">${quantity} ta ${newSize} L</p>
-                      <p class="card-text">${newPrice} sum</p>
+                      <p class="card-text price">${newPrice} sum</p>
                       <div class="display-flex">
                       <button type="button" onclick="remuve(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                       <button type="button" onclick="editModal(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToEdit"><i class="ti-pencil-alt"></i></button>
-                      <button type="button" class="btn btn-outline-primary">Buy</button>
+                      <button type="button" onclick="buy(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-primary">Buy</button>
                       </div>
                   </div>
                   </div>
@@ -82,13 +83,13 @@ function addCard() {
                   <div class="card">
                   <img src="${imgUrl}" class="card-img-top" alt="...">
                   <div class="card-body">
-                      <h5 class="card-title">${newName}</h5>
+                      <h4 class="card-title">${newName}</h4>
                       <p class="card-text h6">${quantity} ta ${newSize} L</p>
-                      <p class="card-text">${newPrice} sum</p>
+                      <p class="card-text price">${newPrice} sum</p>
                       <div class="display-flex">
                       <button type="button" onclick="remuve(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                       <button type="button" onclick="editModal(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToEdit"><i class="ti-pencil-alt"></i></button>
-                      <button type="button" class="btn btn-outline-primary">Buy</button>
+                      <button type="button" onclick="buy(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-primary">Buy</button>
                       </div>
                   </div>
                   </div>

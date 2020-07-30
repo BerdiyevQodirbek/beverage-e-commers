@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beverage Pro</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis">
     <link rel="stylesheet" href="fonts/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -63,7 +64,7 @@
                 <div class="card">
                   <img src="https://cdn.pixabay.com/photo/2020/05/27/22/46/mojito-5229209__340.jpg" class="card-img-top" alt="...">
                   <div class="card-body p-1">
-                    <h5 class="card-title">Kokteyl</h5>
+                    <h4 class="card-title">Kokteyl</h4>
                     <p class="card-text h6">1 L</p>
                     <p class="card-text">5000 sum</p>
                     <div class="display-flex">
@@ -130,7 +131,7 @@
             </div>
 
             <!-- ||||||||||| M O D A L   T O   E D I T |||||||||||-->
-
+            
             <div class="modal fade" id="ModalToEdit" tabindex="-1" role="dialog" aria-labelledby="ModalToEdit" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -180,6 +181,36 @@
                 </div>
               </div>
             </div>
+            
+            <!-- ||||||||||| M O D A L   T O   S A L E S |||||||||||-->
+
+            <div class="modal fade" id="ModalToHistory" tabindex="-1" role="dialog" aria-labelledby="ModalToHistory" aria-hidden="true">
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="HistoryOfModal">Sales</h5>
+                    <button onclick="clearInner()" type="button" class="close" id="historyModal-close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Price</th>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Time</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tbody">
+                        <!-- firebase adds --> 
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -192,116 +223,30 @@
             <i class="ti-shopping-cart"></i>
           </button>
           
-          <span id="totalOrders">Cart(4)</span>
-          <button>
-              <i class="ti-plus"></i>
+          <span id="totalOrders"></span>
+          <button onclick="historY()" data-toggle="modal" data-target="#ModalToHistory">
+              <i class="ti-bookmark-alt"></i>
           </button>
         </div>  
         <div id="orderList">
           <div class="d-flex px-3 justify-content-between">
-            <span>Order List</span><span>time</span>
+            <span>Order List</span><span id="orderTime">time</span>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex">
-              <div class="info">
-                <h5>Card name</h5>
-                <p>Card price</p>
-              </div>
-              <div class="d-flex justify-content-center align-items-center">
-                <button class="plusBtn lightBtn">+</button>
-                <button class="cardQty mx-3">0</button>
-                <button class="minusBtn lightBtn">-</button>
-              </div>
-            </li>
-            <li class="list-group-item d-flex">
-              <div class="info">
-                <h5>Card name</h5>
-                <p>Card price</p>
-              </div>
-              <div class="d-flex justify-content-center align-items-center">
-                <button class="plusBtn lightBtn">+</button>
-                <button class="cardQty mx-3">0</button>
-                <button class="minusBtn lightBtn">-</button>
-              </div>
-            </li>
-            <li class="list-group-item d-flex">
-              <div class="info">
-                <h5>Card name</h5>
-                <p>Card price</p>
-              </div>
-              <div class="d-flex justify-content-center align-items-center">
-                <button class="plusBtn lightBtn">+</button>
-                <button class="cardQty mx-3">0</button>
-                <button class="minusBtn lightBtn">-</button>
-              </div>
-            </li>
-            <li class="list-group-item d-flex">
-              <div class="info">
-                <h5>Card name</h5>
-                <p>Card price</p>
-              </div>
-              <div class="d-flex justify-content-center align-items-center">
-                <button class="plusBtn lightBtn">+</button>
-                <button class="cardQty mx-3">0</button>
-                <button class="minusBtn lightBtn">-</button>
-              </div>
-            </li>
-            <li class="list-group-item d-flex">
-              <div class="info">
-                <h5>Card name</h5>
-                <p>Card price</p>
-              </div>
-              <div class="d-flex justify-content-center align-items-center">
-                <button class="plusBtn lightBtn">+</button>
-                <button class="cardQty mx-3">0</button>
-                <button class="minusBtn lightBtn">-</button>
-              </div>
-            </li>
-            <li class="list-group-item d-flex">
-              <div class="info">
-                <h5>Card name</h5>
-                <p>Card price</p>
-              </div>
-              <div class="d-flex justify-content-center align-items-center">
-                <button class="plusBtn lightBtn">+</button>
-                <button class="cardQty mx-3">0</button>
-                <button class="minusBtn lightBtn">-</button>
-              </div>
-            </li>
-            <li class="list-group-item d-flex">
-              <div class="info">
-                <h5>Card name</h5>
-                <p>Card price</p>
-              </div>
-              <div class="d-flex justify-content-center align-items-center">
-                <button class="plusBtn lightBtn">+</button>
-                <button class="cardQty mx-3">0</button>
-                <button class="minusBtn lightBtn">-</button>
-              </div>
-            </li>
-            <li class="list-group-item d-flex">
-              <div class="info">
-                <h5>Card name</h5>
-                <p>Card price</p>
-              </div>
-              <div class="d-flex justify-content-center align-items-center">
-                <button class="plusBtn lightBtn">+</button>
-                <button class="cardQty mx-3">0</button>
-                <button class="minusBtn lightBtn">-</button>
-              </div>
-            </li>
           </ul>
-          <div class="d-flex justify-content-between p-3">
+        </div>
+        <div class="p-3" id="orderFooter">
+          <div class="d-flex justify-content-between py-1">
             <h3>Total:</h3>
-            <h3>12354645$</h3>
+            <h3 id="totalPrice"></h3>
+          </div>
+          <div class="buyGrid">
+            <button onclick="reload(this)" id="reload"><i class="ti-reload"></i></button>
+            <button><i class="ti-credit-card"></i></button>
+            <button><i class="ti-receipt"></i></button>
+            <button onclick="sell()" class="bg-primary">SELL</button>
           </div>
         </div>
-            <div class="p-3" id="orderFooter">
-                  <button><i class="ti-save"></i></button>
-                  <button><i class="ti-credit-card"></i></button>
-                  <button><i class="ti-receipt"></i></button>
-                  <button class="bg-primary">BAYAR</button>
-            </div>
         
       </div>
       
@@ -334,5 +279,6 @@
 <script src="js/filter.js"></script>
 <script src="js/delete.js"></script>
 <script src="js/buy.js"></script>
+<script src="js/last.js"></script>
 </body>
 </html>

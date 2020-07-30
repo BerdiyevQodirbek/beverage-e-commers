@@ -13,6 +13,8 @@
         font-size: 20px;
         background: #ffffff;
         position: sticky;
+        top: 0;
+        z-index: 12;
     }
     #orderList {
         background: #ffffff;
@@ -33,29 +35,64 @@
         border-radius: 2px;
     }
     .cardQty {
-        width: 30px;
+        max-width: 50px;
         height: 30px;
         border: 0.8px solid #cdd8dd;
         border-radius: 2px;
-        font-size: 20px
+        font-size: 20px;
+        text-align: center;
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
     }
     #orderFooter {
     position: sticky;
     bottom: 0;
-    display: grid;
-    grid-gap: 5px;
-    grid-template-columns: auto auto auto auto auto auto;
     background: white;
+    border-top: 0.8px solid #e7e7e7;
 
-    button {
-        background: #cdd8dd;
-        border-radius: 5px;
-        width: 100%;
-    }
+        .buyGrid {
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: auto auto auto auto auto auto;
+    
+            }
+        button {
+            background: #cdd8dd;
+            border-radius: 5px;
+            width: 100%;
+        }
 
-    .bg-primary {
-        grid-column: 4 / 7;
-        color: white;
+        .bg-primary {
+            grid-column: 4 / 7;
+            color: white;
+        }
     }
 }
+#orderTime {
+    background: #f1f6f7;
+    border-radius: 4px;
+    padding: 0 2px;
+}
+
+.warn {
+    background: red;
+    color: white;
+}
+
+.shake {
+    animation-name: shake;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    outline: none;
+    color: red !important;
+}
+
+@keyframes shake {
+    0% {transform: rotate(0deg)}
+    33% {transform: rotate(20deg)}
+    66% {transform: rotate(-20deg)}
+    100% {transform: rotate(0deg)}
 }
