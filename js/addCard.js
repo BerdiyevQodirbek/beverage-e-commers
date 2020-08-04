@@ -8,6 +8,11 @@ var storageRef = storage.ref();
 
 
 function addCard() {
+  document.getElementById("addCardBtn").innerText = ""
+  document.getElementById("addCardBtn").innerHTML = `
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>`
   var newName =document.getElementById("newName").value;
   var newPrice =document.getElementById("newPrice").value;
   var newImgFile =document.getElementById("newImgFile").files[0];
@@ -46,7 +51,7 @@ function addCard() {
                       <div class="display-flex">
                       <button type="button" onclick="remuve(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                       <button type="button" onclick="editModal(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToEdit"><i class="ti-pencil-alt"></i></button>
-                      <button type="button" onclick="buy(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-primary">Buy</button>
+                      <button type="button" onclick="add(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-primary">Add</button>
                       </div>
                   </div>
                   </div>
@@ -89,7 +94,7 @@ function addCard() {
                       <div class="display-flex">
                       <button type="button" onclick="remuve(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                       <button type="button" onclick="editModal(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToEdit"><i class="ti-pencil-alt"></i></button>
-                      <button type="button" onclick="buy(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-primary">Buy</button>
+                      <button type="button" onclick="add(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-primary">Add</button>
                       </div>
                   </div>
                   </div>
@@ -101,6 +106,8 @@ function addCard() {
           document.getElementById("newImgFile").value = "";
           document.getElementById("newQuanty").value = "";
           document.getElementById('modal-close').click();//hide modal
+          document.getElementById("addCardBtn").innerHTML = ""
+          document.getElementById("addCardBtn").innerText = "Add"
         })
         .catch((error) => {
           console.log(error);
@@ -113,5 +120,4 @@ function addCard() {
     })
   }
  
-
 }

@@ -2,9 +2,7 @@
 //  A D D   C A R D   D A T A   T O   O R D E R   L I S T 
 
 
-
-
-function buy(el) {
+function add(el) {
     var hours = document.getElementById("orderTime").innerText
     var d = new Date();
     var date = d.getDate();
@@ -22,12 +20,21 @@ function buy(el) {
             if(isItemExist) {
                 items.map(item => {
                     if(item.id === id && item.qty < mainD.qty) {
+                        console.log(mainD.qty);
                         item.qty++;
                         return item;
                     } 
                     return item;
                 });
             } else {
+                var newQty = mainD.qty - 1;
+                console.log(newQty);
+                firestore.collection('Beverage').doc(id).update({
+                    qty: newQty
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
                 items.push({id, name: mainD.name, qty: 1, price: mainD.price, time: dateStr})
             }
             ref.set({items});
@@ -63,16 +70,14 @@ function buy(el) {
 
 function manageQty(el) {
     var relod = document.getElementById('reload')
-    relod.style.background = "red"
-    relod.style.color = "white"
     var parentd = el.closest("div");
     var {id} = el.dataset
     var qty = parentd.getElementsByClassName("cardQty")[0]
     var ref = firestore.collection('admins').doc('user');
     ref.get().then(data => {
         var items = data.data().items;
-        firestore.collection("Beverage").doc(id)
-        .get().then(mainData => {
+        var mainRef = firestore.collection("Beverage").doc(id)
+        mainRef.get().then(mainData => {
             var mainD = mainData.data()
             if (el.innerText == "-") {
                 if (qty.value > 1) {
@@ -80,6 +85,15 @@ function manageQty(el) {
                         if(item.id == id){
                             qty.stepDown(1)
                             item.qty--;
+                            document.getElementById("totalPrice").innerText -=  item.price
+                            var newQty = mainD.qty +1;
+                            mainRef.update({
+                                qty: newQty
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            })
+                            console.log(mainD.qty);
                             return item
                         }
                         return item;
@@ -88,8 +102,8 @@ function manageQty(el) {
     
                 } else {
                     el.closest("li").remove()
+                    console.log(mainD.qty);
                     var filtered = items.filter((item) => {
-                        // document.getElementById("totalPrice").innerText -= item.price
                         return item.id != id
                     })
                     document.getElementById("totalOrders").innerText -=  1
@@ -101,6 +115,9 @@ function manageQty(el) {
                     if(item.id == id && item.qty < mainD.qty){
                         qty.stepUp(1)
                         item.qty++;
+                        var total = document.getElementById("totalPrice")
+                        total.innerText = +item.price + +total.innerText
+                        console.log(mainD.qty);
                         return item
                     }
                     return item;

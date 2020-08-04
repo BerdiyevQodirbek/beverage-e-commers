@@ -94,6 +94,9 @@ function editModal(el) {
 // Edit data
 
 function edit(el) {
+    el.innerHTML = `<div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>`
     var el;
     var {id, img} = el.dataset;
     var newName = document.getElementById("updatedName").value
@@ -125,7 +128,7 @@ function edit(el) {
             updateVal.getElementsByClassName("card-text")[1].innerText = `${newPrice} sum`;
             updateVal.getElementsByTagName('img')[0].src = `${img}`;
             document.getElementById("updatedImgFile").value = "";
-            
+            el.innerHTML = "Edit"
         }).catch((error) => {
             console.log(error);
         })
@@ -154,6 +157,8 @@ function edit(el) {
                             updateVal.getElementsByClassName("card-text")[1].innerText = `${newPrice} sum`
                             updateVal.getElementsByTagName('img')[0].src = `${imgUrl}`
                             document.getElementById("updatedImgFile").value = "";
+                            el.innerHTML = "Edit"
+
                         })
                         .catch((error) => {
                             console.log(error);
@@ -187,6 +192,7 @@ function edit(el) {
                         updateVal.getElementsByClassName("card-text")[1].innerText = `${newPrice} sum`
                         updateVal.getElementsByTagName('img')[0].src = `${imgUrl}`
                         document.getElementById("updatedImgFile").value = "";
+                        el.innerHTML = "Edit"
                         
                     })
                     .catch((error) => {

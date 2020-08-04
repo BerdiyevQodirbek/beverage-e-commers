@@ -68,6 +68,31 @@ function historY() {
 // reload the total calc
 
 function reload(el) {
+    var ref = firestore.collection('admins').doc('user');
+    ref.get().then(data => {
+        const items = data.data().items;
+        var totaldoc = document.getElementById("totalPrice")
+        totaldoc.innerText = ""
+        document.querySelector("#orderList ul").innerHTML = ""
+                for (let i = 0; i < items.length; i++) {
+                    document.querySelector("#orderList ul").innerHTML += `<li class="list-group-item d-flex">
+                    <div class="info">
+                    <h5>${items[i].name}</h5>
+                    <p class="price">${items[i].price} sum</p>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                    <button onclick="manageQty(this)" data-id="${items[i].id}" class="plusBtn lightBtn">+</button>
+                    <input type="number" class="cardQty mx-3" value="${items[i].qty}">
+                    <button  onclick="manageQty(this)" data-id="${items[i].id}" class="minusBtn lightBtn">-</button>
+                    </div>
+                    </li>` 
+                    const total = items[i].qty * items[i].price;
+                    totaldoc.innerText = +total + +totaldoc.innerText    
+                    document.getElementById("totalOrders").innerText = `${items.length}`
+                }
+        }).catch((error) => {
+        console.log(error);
+    })
     firestore.collection('admins').doc('user')
     .get().then(data => {
         var items = data.data().items
@@ -82,8 +107,6 @@ function reload(el) {
     .catch((error) => {
         console.log(error);
     })
-    el.style.background = "#cdd8dd"
-    el.style.color = "black"
 }
 function clearInner() {
     document.getElementById('tbody').innerHTML = ''

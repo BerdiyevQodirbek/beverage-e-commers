@@ -84,7 +84,7 @@ firestore.collection('Beverage').get().then(snapshot => {
                     <div class="display-flex">
                     <button type="button" onclick="remuve(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                     <button type="button" onclick="editModal(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToEdit"><i class="ti-pencil-alt"></i></button>
-                    <button type="button" onclick="buy(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-primary">Buy</button>
+                    <button type="button" onclick="add(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-primary">Add</button>
                     </div>
                 </div>
                 </div>

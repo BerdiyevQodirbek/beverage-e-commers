@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container-fluid">
+  <div id="sign">
+    
+  </div>
+  <div class="container-fluid" id="main">
     <div class="row text-center">
 <!--     \\\\\\\\\\   L E F T     S E C T I O N   //////////     -->
       <div class="col-md-12 col-sm-12 container-fluid" id="LeftSection">
@@ -70,7 +73,7 @@
                     <div class="display-flex">
                       <button type="button" onclick="remuve(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                       <button type="button" onclick="editModal(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToAddNewwCard"><i class="ti-pencil-alt"></i></button>
-                      <button type="button" onclick="buy()" class="btn btn-outline-primary">Buy</button>
+                      <button type="button" onclick="buy()" class="btn btn-outline-primary">Add</button>
                     </div>
                   </div>
                 </div>
@@ -267,7 +270,6 @@
 <!-- {{{{{{{{{{{{{{{{{{{{{{{{{{{  B O O T S T R A P   }}}}}}}}}}}}}}}}}}}}}}}}}}} -->
 
 
-
 <!--  {{{{{{{{{{{{{{{{{{{{{{   F I R E B A S E  }}}}}}}}}}}}}}}}}}}}}}}} -->
 
 <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
@@ -282,7 +284,7 @@
 <script src="js/addCard.js"></script>
 <script src="js/filter.js"></script>
 <script src="js/delete.js"></script>
-<script src="js/buy.js"></script>
+<script src="js/add.js"></script>
 <script src="js/last.js"></script>
 </body>
 </html>
