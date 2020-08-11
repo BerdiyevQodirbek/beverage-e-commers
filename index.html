@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div id="sign">
-    
-  </div>
   <div class="container-fluid" id="main">
     <div class="row text-center">
 <!--     \\\\\\\\\\   L E F T     S E C T I O N   //////////     -->
@@ -63,21 +60,6 @@
 
           <div class="container-fluid col-md-9" id="mainGroup">
             <div class="row">
-              <div class="col-6 col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4 filterable">
-                <div class="card">
-                  <img src="https://cdn.pixabay.com/photo/2020/05/27/22/46/mojito-5229209__340.jpg" class="card-img-top" alt="...">
-                  <div class="card-body p-1">
-                    <h4 class="card-title">Kokteyl</h4>
-                    <p class="card-text h6">1 L</p>
-                    <p class="card-text">5000 sum</p>
-                    <div class="display-flex">
-                      <button type="button" onclick="remuve(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
-                      <button type="button" onclick="editModal(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToAddNewwCard"><i class="ti-pencil-alt"></i></button>
-                      <button type="button" onclick="buy()" class="btn btn-outline-primary">Add</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <!-- |||||||||||  M O D A L   T O   A D D   N E W   B E V E R A G E   C A R D  |||||||||||| -->
@@ -260,6 +242,8 @@
 
     </div>
   </div>
+  <a href="/sign.html" id="signHTML"></a>
+  <button onclick="logOUT()" class="btn btn-danger" id="logOut"><i class="ti-power-off"></i></button>
 
 <!-- {{{{{{{{{{{{{{{{{{{{{{{{{{{  B O O T S T R A P   }}}}}}}}}}}}}}}}}}}}}}}}}}} -->
 

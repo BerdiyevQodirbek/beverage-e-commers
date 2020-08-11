@@ -34,7 +34,7 @@ function SearchByFilter(val) {
 function calc(el) {
     var name = el.innerText.toUpperCase();
     document.querySelector('#mainGroup >.row').innerHTML = ``;
-    firestore.collection('Beverage').get().then(Snapshot => {
+    firestore.collection(r).get().then(Snapshot => {
         Snapshot.forEach(item => {
             var fireData = item.data()
             if (fireData.name.toUpperCase().includes(name)) {
@@ -75,7 +75,7 @@ function All(el) {
 
         document.querySelector("#mainGroup > div").innerHTML = ``
 
-        firestore.collection('Beverage').get().then(snapshot => {
+        firestore.collection(r).get().then(snapshot => {
     
             snapshot.forEach(item => {
                 const data= item.data();//{name: 'Fanta', price:6700}

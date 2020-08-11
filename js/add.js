@@ -10,18 +10,25 @@ function add(el) {
     var year = d.getFullYear();
     var dateStr = date + "." + month + "." + year + "-" + hours 
     var {id, img} = el.dataset;
-    var ref = firestore.collection('admins').doc('user');
+    var ref = firestore.collection('admins').doc(r);
     ref.get().then(data => {
         const items = data.data().items;
         const isItemExist = items.find(item => item.id === id);
-        firestore.collection('Beverage').doc(id)
+        firestore.collection(r).doc(id)
         .get().then(mainData => {
             var mainD = mainData.data()
             if(isItemExist) {
                 items.map(item => {
                     if(item.id === id && item.qty < mainD.qty) {
                         console.log(mainD.qty);
+                        var minusQty = mainD.qty - 1;
                         item.qty++;
+                        firestore.collection(r).doc(id).update({
+                            qty: minusQty
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
                         return item;
                     } 
                     return item;
@@ -29,7 +36,7 @@ function add(el) {
             } else {
                 var newQty = mainD.qty - 1;
                 console.log(newQty);
-                firestore.collection('Beverage').doc(id).update({
+                firestore.collection(r).doc(id).update({
                     qty: newQty
                 })
                 .catch((error) => {
@@ -49,7 +56,7 @@ function add(el) {
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
                 <button onclick="manageQty(this)" data-id="${items[i].id}" class="plusBtn lightBtn">+</button>
-                <input type="number" class="cardQty mx-3" value="${items[i].qty}">
+                <input type="number" class="cardQty mx-3" readonly="readonly" value="${items[i].qty}">
                 <button  onclick="manageQty(this)" data-id="${items[i].id}" class="minusBtn lightBtn">-</button>
                 </div>
                 </li>` 
@@ -73,10 +80,10 @@ function manageQty(el) {
     var parentd = el.closest("div");
     var {id} = el.dataset
     var qty = parentd.getElementsByClassName("cardQty")[0]
-    var ref = firestore.collection('admins').doc('user');
+    var ref = firestore.collection('admins').doc(r);
     ref.get().then(data => {
         var items = data.data().items;
-        var mainRef = firestore.collection("Beverage").doc(id)
+        var mainRef = firestore.collection(r).doc(id)
         mainRef.get().then(mainData => {
             var mainD = mainData.data()
             if (el.innerText == "-") {
@@ -86,7 +93,7 @@ function manageQty(el) {
                             qty.stepDown(1)
                             item.qty--;
                             document.getElementById("totalPrice").innerText -=  item.price
-                            var newQty = mainD.qty +1;
+                            var newQty = mainD.qty + 1;
                             mainRef.update({
                                 qty: newQty
                             })
@@ -102,6 +109,13 @@ function manageQty(el) {
     
                 } else {
                     el.closest("li").remove()
+                    newQty = mainD.qty + 1
+                    firestore.collection(r).doc(id).update({
+                        qty: newQty
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
                     console.log(mainD.qty);
                     var filtered = items.filter((item) => {
                         return item.id != id
@@ -114,15 +128,22 @@ function manageQty(el) {
                 var updatedValue = items.map(item => {
                     if(item.id == id && item.qty < mainD.qty){
                         qty.stepUp(1)
+                        newQty = mainD.qty - 1;
                         item.qty++;
                         var total = document.getElementById("totalPrice")
                         total.innerText = +item.price + +total.innerText
+                        firestore.collection(r).doc(id).update({
+                            qty: newQty
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
                         console.log(mainD.qty);
                         return item
                     }
                     return item;
                 });
-                firestore.collection('admins').doc('user').set({items: updatedValue});
+                firestore.collection('admins').doc(r).set({items: updatedValue});
                 console.log();
                 
             }

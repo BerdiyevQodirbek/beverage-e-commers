@@ -14,7 +14,7 @@ function remuve(el) {
             var deleteRef = storage.refFromURL(img)
             deleteRef.delete().then(() => {
                 console.log(id + " img deleted");
-                firestore.collection('Beverage').doc(id).delete().then(() => {
+                firestore.collection(r).doc(id).delete().then(() => {
                     console.log('Data deleted');
                 })
                 .catch((error) =>{
@@ -26,7 +26,7 @@ function remuve(el) {
             })
         }  else {
             console.log('Without Image');
-            firestore.collection('Beverage').doc(id).delete().then(() => {
+            firestore.collection(r).doc(id).delete().then(() => {
                 console.log('Data deleted');
             })
             .catch((error) =>{
@@ -47,7 +47,7 @@ function remove(el) {
         if (r == true) {
             var id = el.dataset.id
             var parentD = el.closest("div")
-            firestore.collection('BeverageCommon').doc(id).delete().then(() => {
+            firestore.collection(r + ".user").doc(id).delete().then(() => {
             })
             .catch((error) =>{
                 console.log(error);
@@ -70,7 +70,7 @@ function editModal(el) {
     var {id, img} = el.dataset;
     var updateBtn = document.getElementById("updateBtn")
     
-    firestore.collection('Beverage').get().then((snapshot) => {
+    firestore.collection(r).get().then((snapshot) => {
         snapshot.forEach(item => {
             var doc = item.data()
             if(item.id == id){
@@ -112,7 +112,7 @@ function edit(el) {
     } else if(newQty == ""){
         modalWarn.innerText = 'Entir the "Quantity!"'
     } else if (newImgFile == undefined) {
-        var editingData = firestore.collection('Beverage').doc(id)
+        var editingData = firestore.collection(r).doc(id)
         editingData.update({
             name: newName,
             price: newPrice,
@@ -141,7 +141,7 @@ function edit(el) {
                 console.log(id + " img deleted");
                 storageRef.child(id).put(newImgFile).then(() => {
                     storageRef.child(id).getDownloadURL().then((imgUrl) => {
-                        var editingData = firestore.collection('Beverage').doc(id)
+                        var editingData = firestore.collection(r).doc(id)
                         editingData.update({
                             name: newName,
                             price: newPrice,
@@ -176,7 +176,7 @@ function edit(el) {
         } else {
             storageRef.child(id).put(newImgFile).then(() => {
                 storageRef.child(id).getDownloadURL().then((imgUrl) => {
-                    var editingData = firestore.collection('Beverage').doc(id)
+                    var editingData = firestore.collection(r).doc(id)
                     editingData.update({
                         name: newName,
                         price: newPrice,

@@ -8,13 +8,13 @@ function sell() {
     var month = d.getMonth() + 1;
     var year = d.getFullYear();
     var dateStr = date + "." + month + "." + year + "-" + hours     ;
-    var saleRef = firestore.collection("Sales").doc("users").collection('items').doc(dateStr)
-    firestore.collection("admins").doc("user")
+    var saleRef = firestore.collection(r + ".sales").doc("users").collection('items').doc(dateStr)
+    firestore.collection("admins").doc(r)
     .get().then(snap => {
         var expD = snap.data()
         if(expD.items.length > 0) {
             saleRef.set(expD).then(() => {
-                firestore.collection("admins").doc("user").update({
+                firestore.collection("admins").doc(r).update({
                         items: []
                     }).then(() => {
                         document.querySelector("#orderList ul").innerHTML = ''
@@ -44,7 +44,7 @@ function sell() {
 
 function historY() {
     document.getElementById('tbody').innerHTML = ""
-    var historyRef = firestore.collection("Sales").doc("users").collection('items')
+    var historyRef = firestore.collection(r + ".sales").doc("users").collection('items')
     historyRef.get().then(data => {
         data.forEach(doc => {
             var item = doc.data().items
@@ -68,7 +68,7 @@ function historY() {
 // reload the total calc
 
 function reload(el) {
-    var ref = firestore.collection('admins').doc('user');
+    var ref = firestore.collection('admins').doc(r);
     ref.get().then(data => {
         const items = data.data().items;
         var totaldoc = document.getElementById("totalPrice")
@@ -93,7 +93,7 @@ function reload(el) {
         }).catch((error) => {
         console.log(error);
     })
-    firestore.collection('admins').doc('user')
+    firestore.collection('admins').doc(r)
     .get().then(data => {
         var items = data.data().items
         var totaldoc = document.getElementById('totalPrice')
@@ -116,7 +116,7 @@ function clearInner() {
 function clearHistory() {
     conf = confirm("Do you want to clear the history?")
     if (conf) {
-        var historyRef = firestore.collection("Sales").doc("users").collection('items')
+        var historyRef = firestore.collection(r + ".sales").doc("users").collection('items')
         historyRef.get().then(data => {
             data.forEach(doc => {
                historyRef.doc(doc.id).delete().then(() => {

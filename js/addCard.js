@@ -30,7 +30,7 @@ function addCard() {
   } else if(quantity == "" || quantity == "0") {
     modalWarn.innerText = 'Enter the "quantity"'
   }else if(newImgFile == undefined) {
-        var setDoc = firestore.collection("Beverage").doc(updatedAt)
+        var setDoc = firestore.collection(r).doc(updatedAt)
         const imgUrl= "https://cdn.pixabay.com/photo/2019/02/09/10/14/tin-can-3984776_1280.jpg";
         setDoc.set({
           name: newName,
@@ -72,7 +72,7 @@ function addCard() {
     
     storageRef.child(updatedAt).put(newImgFile).then(() => {
       storageRef.child(updatedAt).getDownloadURL().then((imgUrl) => {
-        var setDoc = firestore.collection("Beverage").doc(updatedAt)
+        var setDoc = firestore.collection(r).doc(updatedAt)
   
         setDoc.set({
           name: newName,

@@ -103,6 +103,18 @@ body {
   align-items: center;
 }
 
+#logOut {
+  position: fixed;
+  z-index: 1000;
+  bottom: 2%;
+  left: 2%;
+}
+
+#signHTML {
+  position: fixed;
+  top: 1%;
+}
+
 .card-body {
   padding: 0.25rem;
 }
@@ -285,13 +297,21 @@ body {
   }
 }
 #sign {
-  background: #cdd8dd;
-  height: 100vh;
-  position: absolute;
-  width: 100%;
+  background: #e9faff;
   height: 100%;
-  z-index: 100;
-  opacity: 0.99;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#form {
+  background: white;
+  width: 300px;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

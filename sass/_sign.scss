@@ -1,9 +1,16 @@
 #sign {
-    background: #cdd8dd;
-    height: 100vh;
-    position: absolute;
-    width: 100%;
+    background: #e9faff;
     height: 100%;
-    z-index: 100;
-    opacity: 0.99;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}   
+#form {
+    background: white;
+    width: 300px;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 10px;
 }

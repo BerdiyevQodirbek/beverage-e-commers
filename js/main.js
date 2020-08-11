@@ -1,3 +1,11 @@
+var r = localStorage.getItem("email");
+
+(() =>{
+    if (!r) {
+        document.getElementById("signHTML").click()
+    }
+})()
+
 function expand() {
     var listGroup = document.getElementById("listGroup")
     var mainGroup = document.getElementById('mainGroup')
@@ -25,7 +33,6 @@ addForm.addEventListener("submit", (e) => {
     e.preventDefault()
     inputList.value = "";
 })
-
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<  F I R E B A S E >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -64,12 +71,11 @@ firebase.firestore().enablePersistence()
           // ...
       }
   });
-  
 
 //     A D D   N E W   C A R D   T O   P A G E
 
 
-firestore.collection('Beverage').get().then(snapshot => {
+firestore.collection(r).get().then(snapshot => {
     
     snapshot.forEach(item => {
         const data = item.data();//{name: 'Fanta', price:6700}
@@ -99,7 +105,7 @@ firestore.collection('Beverage').get().then(snapshot => {
 
 //   A D D   N E W   L I S T   T O   P A G E
 
-firestore.collection("BeverageCommon").get().then(snapshot => {
+firestore.collection(r + ".user").get().then(snapshot => {
     snapshot.forEach(list => {
         const listData = list.data();
         const newList = `<div class="d-flex justify-content-between">
@@ -123,7 +129,7 @@ function addToFirebase() {
         
     } else {
         varn.style.display = "none"
-        var setDoc = firestore.collection("BeverageCommon").doc(`${textToSave}`);
+        var setDoc = firestore.collection(r + ".user").doc(`${textToSave}`);
 
         setDoc.set({
             beverageType: textToSave
@@ -141,6 +147,12 @@ function addToFirebase() {
     }
 }
 
-// add new card to Tab-pane
+// Log Out
 
-
+function logOUT() {
+    var c = confirm("Do you really want to LOG OUT?");
+    if (c) {
+        document.getElementById("signHTML").click()
+        localStorage.clear()
+    } 
+}
