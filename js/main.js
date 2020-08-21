@@ -2,7 +2,7 @@ var r = localStorage.getItem("email");
 
 (() =>{
     if (!r) {
-        document.getElementById("signHTML").click()
+        location.href ='/sign.html'
     }
 })()
 
@@ -78,8 +78,8 @@ firebase.firestore().enablePersistence()
 firestore.collection(r).get().then(snapshot => {
     
     snapshot.forEach(item => {
-        const data = item.data();//{name: 'Fanta', price:6700}
-        const card = `
+        var data = item.data();//{name: 'Fanta', price:6700}
+        var card = `
             <div class="col-6 col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4 filterable">
                 <div class="card">
                 <img src="${data.imgUrl}" class="card-img-top" alt="...">
@@ -106,14 +106,19 @@ firestore.collection(r).get().then(snapshot => {
 //   A D D   N E W   L I S T   T O   P A G E
 
 firestore.collection(r + ".user").get().then(snapshot => {
-    snapshot.forEach(list => {
-        const listData = list.data();
-        const newList = `<div class="d-flex justify-content-between">
-        <a onclick="calc(this)" class="list-group-item list-group-item-action d-flex"><span>${listData.beverageType}</span></a> <button onclick="remove(this)" data-id="${listData.beverageType}" class="text-danger"><i class="ti-trash"></i></button>
-        </div>`
-        listBar.innerHTML += newList;
-
-    })
+    if (snapshot.size > 0) {
+        snapshot.forEach(list => {
+            var listData = list.data();
+            var newList = `<div class="d-flex justify-content-between">
+            <a onclick="calc(this)" class="list-group-item list-group-item-action d-flex"><span>${listData.beverageType}</span></a> <button onclick="remove(this)" data-id="${listData.beverageType}" class="text-danger"><i class="ti-trash"></i></button>
+            </div>`
+            listBar.innerHTML += newList;
+    
+        }) 
+    } else {
+        document.getElementById("sideShower").click()
+    }
+    
 })
 .catch(err=> console.log(err))
 

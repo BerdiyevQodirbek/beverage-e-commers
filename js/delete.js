@@ -3,31 +3,24 @@
 
 
 function remuve(el) {
-    var r = confirm("Do you want to delete this card?")
-    if (r) {
+    var c = confirm("Do you want to delete this card?")
+    if (c) {
         var el;
         var {id, img} = el.dataset;
         var parent = el.closest(".filterable")
         parent.remove()
-        console.log(img)
+        // console.log(img)
         if(img.includes('https://firebasestorage.googleapis.com/v0/b/beveragefirebase.appspot.com')) {
             var deleteRef = storage.refFromURL(img)
             deleteRef.delete().then(() => {
-                console.log(id + " img deleted");
-                firestore.collection(r).doc(id).delete().then(() => {
-                    console.log('Data deleted');
-                })
-                .catch((error) =>{
-                    console.log(error);
-                })
+                console.log("deleted");
             })
             .catch((error) => {
                 console.log(error);
             })
         }  else {
-            console.log('Without Image');
             firestore.collection(r).doc(id).delete().then(() => {
-                console.log('Data deleted');
+                // var nam = id.slice(0, id.indexOf("1"))
             })
             .catch((error) =>{
                 console.log(error);
@@ -43,8 +36,8 @@ function remuve(el) {
 // ----------> Delete list
 
 function remove(el) {
-        var r = confirm("Do you want to delete this list?");
-        if (r == true) {
+        var c = confirm("Do you want to delete this list?");
+        if (c == true) {
             var id = el.dataset.id
             var parentD = el.closest("div")
             firestore.collection(r + ".user").doc(id).delete().then(() => {
@@ -94,10 +87,6 @@ function editModal(el) {
 // Edit data
 
 function edit(el) {
-    el.innerHTML = `<div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>`
-    var el;
     var {id, img} = el.dataset;
     var newName = document.getElementById("updatedName").value
     var newPrice = document.getElementById("updatedPrice").value
@@ -112,6 +101,9 @@ function edit(el) {
     } else if(newQty == ""){
         modalWarn.innerText = 'Entir the "Quantity!"'
     } else if (newImgFile == undefined) {
+        el.innerHTML = `<div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>`
         var editingData = firestore.collection(r).doc(id)
         editingData.update({
             name: newName,
@@ -134,6 +126,9 @@ function edit(el) {
         })
         
     } else {
+        el.innerHTML = `<div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>`
         if (img.includes('https://firebasestorage.googleapis.com/v0/b/beveragefirebase.appspot.com')) {
             console.log(img);
             var deleteRef = storage.refFromURL(img)

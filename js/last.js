@@ -14,15 +14,32 @@ function sell() {
         var expD = snap.data()
         if(expD.items.length > 0) {
             saleRef.set(expD).then(() => {
-                firestore.collection("admins").doc(r).update({
-                        items: []
-                    }).then(() => {
-                        document.querySelector("#orderList ul").innerHTML = ''
-                        document.getElementById('totalPrice').innerText = ''
-                        document.getElementById('totalOrders').innerText = ''
-                    }).catch((error) => {
-                        console.log(error);
+                expD.items.forEach( card => {
+                    firestore.collection(r).get().then( cards => {
+                        cards.forEach( bever => {
+                            if (bever.id == card.id) {
+                                var newQty = bever.data().qty - card.qty;
+                                firestore.collection(r).doc(bever.id).update({
+                                    qty: newQty
+                                }).then(() => {
+                                    firestore.collection("admins").doc(r).update({
+                                        items: []
+                                    }).then(() => {
+                                        document.querySelector("#orderList ul").innerHTML = ''
+                                        document.getElementById('totalPrice').innerText = ''
+                                        document.getElementById('totalOrders').innerText = ''
+                                    }).catch((error) => {
+                                        console.log(error);
+                                    })
+                                    console.log("updated");
+                                }).catch((err) => {
+                                    console.log(err);
+                                })
+                            }
+                        })
                     })
+                })
+                
             })
             .catch((error) => {
                 console.log(error);
@@ -108,6 +125,7 @@ function reload(el) {
         console.log(error);
     })
 }
+
 function clearInner() {
     document.getElementById('tbody').innerHTML = ''
 }
@@ -131,6 +149,6 @@ function clearHistory() {
             console.log(error);
         })
     } else {
-        console.log("carefull");
+        console.log("Be carefull");
     }
 }

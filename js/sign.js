@@ -101,7 +101,7 @@ function login(el) {
                     if (data.password == psw.value) {
                         signMail.value = ""
                         psw.value = ""
-                        document.getElementById("MainHTML").click()
+                        location.href ='/index.html'
                     } else {
                         el.innerText = "Wrong Password"
                     }

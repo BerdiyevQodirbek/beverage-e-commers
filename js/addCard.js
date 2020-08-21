@@ -7,12 +7,7 @@ var storage = firebase.storage();
 var storageRef = storage.ref();
 
 
-function addCard() {
-  document.getElementById("addCardBtn").innerText = ""
-  document.getElementById("addCardBtn").innerHTML = `
-    <div class="spinner-border text-primary" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>`
+function addCard(el) {
   var newName =document.getElementById("newName").value;
   var newPrice =document.getElementById("newPrice").value;
   var newImgFile =document.getElementById("newImgFile").files[0];
@@ -24,12 +19,15 @@ function addCard() {
   
   if (newName == "") {
     modalWarn.innerText = 'Entir the "name!"'
-    
   } else if(newPrice == "") {
     modalWarn.innerText = 'Enter the "price"'
   } else if(quantity == "" || quantity == "0") {
     modalWarn.innerText = 'Enter the "quantity"'
   }else if(newImgFile == undefined) {
+    el.innerHTML = `
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>`
         var setDoc = firestore.collection(r).doc(updatedAt)
         const imgUrl= "https://cdn.pixabay.com/photo/2019/02/09/10/14/tin-can-3984776_1280.jpg";
         setDoc.set({
@@ -62,6 +60,7 @@ function addCard() {
           document.getElementById("newPrice").value = "";
           document.getElementById("newImgFile").value = "";
           document.getElementById("newQuanty").value = "";
+          el.innerHTML = "Add"
           document.getElementById('modal-close').click();//hide modal
         })
         .catch((error) => {
@@ -69,7 +68,10 @@ function addCard() {
         })
    
   }else {
-    
+    el.innerHTML = `
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>`
     storageRef.child(updatedAt).put(newImgFile).then(() => {
       storageRef.child(updatedAt).getDownloadURL().then((imgUrl) => {
         var setDoc = firestore.collection(r).doc(updatedAt)
@@ -105,9 +107,8 @@ function addCard() {
           document.getElementById("newPrice").value = "";
           document.getElementById("newImgFile").value = "";
           document.getElementById("newQuanty").value = "";
+          el.innerText = "Add"
           document.getElementById('modal-close').click();//hide modal
-          document.getElementById("addCardBtn").innerHTML = ""
-          document.getElementById("addCardBtn").innerText = "Add"
         })
         .catch((error) => {
           console.log(error);
