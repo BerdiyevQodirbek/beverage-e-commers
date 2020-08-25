@@ -13,14 +13,19 @@ function remuve(el) {
         if(img.includes('https://firebasestorage.googleapis.com/v0/b/beveragefirebase.appspot.com')) {
             var deleteRef = storage.refFromURL(img)
             deleteRef.delete().then(() => {
-                console.log("deleted");
+                firestore.collection(r).doc(id).delete().then(() => {
+                    console.log("deleted");
+                })
+                .catch((error) =>{
+                    console.log(error);
+                })
             })
             .catch((error) => {
                 console.log(error);
             })
         }  else {
             firestore.collection(r).doc(id).delete().then(() => {
-                // var nam = id.slice(0, id.indexOf("1"))
+                console.log("deleted");
             })
             .catch((error) =>{
                 console.log(error);
