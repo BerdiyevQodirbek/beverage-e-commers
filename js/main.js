@@ -1,11 +1,5 @@
 var r = localStorage.getItem("email");
 
-(() =>{
-    if (!r) {
-        location.href ='/sign.html'
-    }
-})()
-
 function expand() {
     var listGroup = document.getElementById("listGroup")
     var mainGroup = document.getElementById('mainGroup')
@@ -51,6 +45,7 @@ addForm.addEventListener("submit", (e) => {
   
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
+var auth = firebase.auth()
 
 //    Storage reference
 var storage = firebase.storage();
@@ -72,8 +67,18 @@ firebase.firestore().enablePersistence()
       }
   });
 
-//     A D D   N E W   C A R D   T O   P A G E
+// auth
 
+
+auth.onAuthStateChanged((user) =>{
+    if(user){        
+        console.log('You are in "NIGGA"');
+    }else{
+        location.href ='/sign.html'
+    }
+});
+
+//     A D D   N E W   C A R D   T O   P A G E
 
 firestore.collection(r).get().then(snapshot => {
     
@@ -90,7 +95,7 @@ firestore.collection(r).get().then(snapshot => {
                     <div class="display-flex">
                     <button type="button" onclick="remuve(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                     <button type="button" onclick="editModal(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToEdit"><i class="ti-pencil-alt"></i></button>
-                    <button type="button" onclick="add(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-primary"><i class="ti-shopping-cart"></i></button>
+                    <button type="button" onclick="add(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-primary">Add</button>
                     </div>
                 </div>
                 </div>
@@ -101,8 +106,7 @@ firestore.collection(r).get().then(snapshot => {
     })
 })
 .catch(err=> console.log(err))
-
-
+  
 //   A D D   N E W   L I S T   T O   P A G E
 
 firestore.collection(r + ".user").get().then(snapshot => {
@@ -157,7 +161,11 @@ function addToFirebase() {
 function logOUT() {
     var c = confirm("Do you really want to LOG OUT?");
     if (c) {
-        document.getElementById("signHTML").click()
-        localStorage.clear()
+        auth.signOut().then(()=>{
+            console.log('user signed out');
+        }).catch(()=>{
+            console.log('error');
+        })
+    
     } 
 }

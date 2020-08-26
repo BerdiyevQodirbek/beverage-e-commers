@@ -15,6 +15,7 @@
   
 firebase.initializeApp(firebaseConfig);
 var firestore = firebase.firestore();
+var auth = firebase.auth()
 
 //    Storage reference
 var storage = firebase.storage();
@@ -38,82 +39,46 @@ firebase.firestore().enablePersistence()
   
 // Sign Up
 
-
-function signUp(el) {
-    var signName = document.getElementById("signName");
-    var signEmail = document.getElementById("signEmail");
-    var signPassword = document.getElementById("signPassword");
-    var signTel = document.getElementById("signTel");
-    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-    if (signName.value == "") {
-        el.innerText = "Entir your Name"
-        signName.focus()
-    } else if (reg.test(signEmail.value) == false) {
-        el.innerText = "Invalid EMail";
-        signEmail.focus()
-        return false;
-    } else if(signPassword.value == "") {
-        el.innerText = "Entir your Pssword"
-        signPassword.focus()
-    } else if(signTel.value.length < 7) {
-        el.innerText = "Entir your Tel"
-        signTel.focus()
-    } else {
-        firestore.collection("users").doc(signEmail.value)
-        .set({
-            name: signName.value,
-            email: signEmail.value,
-            password: signPassword.value,
-            tel: signTel.value
-        })
-        .then(() => {
-            el.innerText= "Sign Up"
-            document.getElementById("signInLink").click()
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-    }
-}
+var signUpForm = document.getElementById("signUpForm")
+signUpForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let email = document.getElementById("signEmail").value
+    let password = document.getElementById("signPassword").value;
+    auth.createUserWithEmailAndPassword(email, password)
+    .then(() => {
+        document.getElementsByClassName("emailHelp")[1].innerHTML = `We'll never share your email with anyone else` 
+        document.getElementsByClassName("emailHelp")[1].classList.remove("message")
+        document.getElementById("signInLink").click()
+    })
+    .catch((error)=>{
+        document.getElementsByClassName("emailHelp")[1].innerHTML = `${error.message}` 
+        document.getElementsByClassName("emailHelp")[1].classList.add("message")
+        console.log(error.message);
+    })
+})
 
 // Sign In
 
+var loginForm = document.getElementById("loginForm")
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-function login(el) {
-    var signMail = document.getElementsByName("signMail")[0]
-    var psw = document.getElementById("loginPassword")
-    if (signMail.value == "") {
-        el.innerText = "Entir your Mail"
-        signMail.focus()
-    } else if(psw.value == "") {
-        el.innerText = "Entir your Password"
-        psw.focus()
-    } else {
-        el.innerText= "Login"
-        firestore.collection("users").get().then( users => {
-            users.forEach( user => {
-                if (user == null) {
-                    console.log("no file");
-                } else {
-                var data = user.data()
-                if(data.email == signMail.value) {
-                    localStorage.setItem("email", signMail.value)
-                    if (data.password == psw.value) {
-                        signMail.value = ""
-                        psw.value = ""
-                        location.href ='/index.html'
-                    } else {
-                        el.innerText = "Wrong Password"
-                    }
-                } else {
-                    document.getElementById("signUpLink").click()
-                }
-                }
-                
-            })
+    let email = document.getElementById("signMail").value
+    let password = document.getElementById("loginPassword").value;
+
+        auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+            document.getElementsByClassName("emailHelp")[0].innerHTML = `We'll never share your email with anyone else`  
+            document.getElementsByClassName("emailHelp")[0].classList.remove("message")
+            localStorage.setItem("email", email)
+            location.href = '/index.html'
         })
-        .catch((error) => {
-            console.log(error);
+        .catch((error)=>{
+            document.getElementsByClassName("emailHelp")[0].innerHTML = `${error.message}` 
+            document.getElementsByClassName("emailHelp")[0].classList.add("message")
+            console.log(error.message);
         })
-    }
-}
+        
+
+
+})

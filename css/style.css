@@ -9,15 +9,15 @@ button {
 
 body {
   padding-bottom: 50px;
-  background: #e9faff;
-  font-family: Dosis;
+  background: #fafbff;
+  font-family: Raleway;
   height: 100%;
 }
 
 #listGroup {
   z-index: 5;
-  box-shadow: 5px 0px 5px #edf5fd !important;
   max-height: 50vh;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0143771), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0119221), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.01), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.00807786), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.00562291);
   overflow-y: scroll;
   transition: all 0.5s ease-in-out;
   position: sticky;
@@ -34,11 +34,17 @@ body {
   outline: none;
 }
 
+.card-title {
+  margin-top: 8px;
+}
+
 .card {
-  box-shadow: 0px 0px 4px lightblue;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0143771), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0119221), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.01), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.00807786), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.00562291);
 }
 .card:hover {
-  box-shadow: 0px 0px 10px lightblue;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0143771), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0119221), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.01), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.00807786), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.00562291);
 }
 .card:hover img {
   height: 162px;
@@ -55,13 +61,12 @@ body {
 
 .price,
 #totalPrice {
-  text-shadow: 0px 0px 3px lightgreen;
+  color: #007bff;
 }
 
 .card img {
   height: 150px;
   object-fit: cover;
-  box-shadow: 0px 3px 3px lightgrey;
   transition: 500ms;
 }
 
@@ -110,8 +115,21 @@ body {
   bottom: 2%;
   left: 2%;
   border-radius: 50%;
-  box-shadow: 0px 0px 5px grey;
-  padding: 8px 12px;
+  padding: 8px 13px;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0143771), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0119221), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.01), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.00807786), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.00562291);
+}
+
+#addCardM {
+  position: fixed;
+  z-index: 1000;
+  bottom: 2%;
+  font-size: 40px;
+  line-height: 20px;
+  height: 40px;
+  right: 2%;
+  border-radius: 50%;
+  padding: 0px 12px 0px;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0143771), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0119221), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.01), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.00807786), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.00562291);
 }
 
 #signHTML {
@@ -125,9 +143,9 @@ body {
   bottom: 2%;
   right: 2%;
   border-radius: 50%;
-  box-shadow: 0px 0px 5px grey;
-  padding: 0px 14px 8px;
-  height: 42px;
+  padding: 0px 14px 9px;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0143771), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0119221), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.01), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.00807786), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.00562291);
+  height: 44px;
   font-size: 2rem;
   line-height: 1px;
 }
@@ -151,8 +169,8 @@ body {
   }
 }
 #leftNav {
-  box-shadow: 0px 6px 5px #edf5fd !important;
   z-index: 10;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0143771), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0119221), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.01), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.00807786), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.00562291);
   position: sticky;
   top: 0;
   font-size: 20px;
@@ -168,16 +186,18 @@ body {
   border: none;
   outline: none;
   background: transparent;
+  font-size: 18px;
 }
 #searchForm button {
   color: #657482;
   margin-right: 10px;
+  padding-top: 5px;
 }
 
 .orderSection {
   padding: 0;
-  box-shadow: -5px 0px 5px #edf5fd !important;
   max-height: 50vh;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0143771), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0119221), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.01), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.00807786), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.00562291);
   overflow-y: scroll;
   position: fixed;
   top: 48px;
@@ -283,8 +303,8 @@ body {
   overflow: hidden;
   transition: 0.5s;
   border-radius: 50%;
-  box-shadow: 0px 0px 5px black !important;
   right: 10px;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0143771), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0119221), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.01), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.00807786), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.00562291);
   top: 60px;
 }
 .orderCollapse #listShower {

@@ -98,9 +98,9 @@ function reload(el) {
                     <p class="price">${items[i].price} sum</p>
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
-                    <button onclick="manageQty(this)" data-id="${items[i].id}" class="plusBtn lightBtn">+</button>
-                    <input type="number" class="cardQty mx-3" value="${items[i].qty}">
                     <button  onclick="manageQty(this)" data-id="${items[i].id}" class="minusBtn lightBtn">-</button>
+                    <input type="number" class="cardQty mx-3" value="${items[i].qty}">
+                    <button onclick="manageQty(this)" data-id="${items[i].id}" class="plusBtn lightBtn">+</button>
                     </div>
                     </li>` 
                     const total = items[i].qty * items[i].price;

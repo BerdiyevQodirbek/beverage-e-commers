@@ -49,7 +49,7 @@ function calc(el) {
                             <div class="display-flex">
                             <button type="button" onclick="remuve(this)" data-img="${fireData.imgUrl}" data-id="${fireData.id}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                             <button type="button" onclick="editModal(this)" data-img="${fireData.imgUrl}" data-id="${item.id}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToEdit"><i class="ti-pencil-alt"></i></button>
-                            <button type="button" onclick="add(this)" data-img="${fireData.imgUrl}" data-id="${item.id}" class="btn btn-outline-primary">add</button>
+                            <button type="button" onclick="add(this)" data-img="${fireData.imgUrl}" data-id="${item.id}" class="btn btn-outline-primary"><i class="ti-shopping-cart"></i></button>
                             </div>
                         </div>
                         </div>

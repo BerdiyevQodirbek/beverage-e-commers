@@ -5,7 +5,7 @@
         if (orders.data() != undefined) {
             var order = orders.data().items
             if(order.length > 0){
-                document.getElementById("listShower").style = 'text-shadow: 0px 0px 3px black; color: red !important'    
+                document.getElementById("listShower").style = 'text-shadow: 0px 0px 1px black; color: red !important'    
                 reload()
             } else {
                 document.getElementById("listShower").click()
@@ -62,9 +62,9 @@ function add(el) {
                         <p class="price">${items[i].price} sum</p>
                         </div>
                         <div class="d-flex justify-content-center align-items-center">
-                        <button onclick="manageQty(this)" data-id="${items[i].id}" class="plusBtn lightBtn">+</button>
-                        <input type="number" class="cardQty mx-3" readonly="readonly" value="${items[i].qty}">
                         <button  onclick="manageQty(this)" data-id="${items[i].id}" class="minusBtn lightBtn">-</button>
+                        <input type="number" class="cardQty mx-3" readonly="readonly" value="${items[i].qty}">
+                        <button onclick="manageQty(this)" data-id="${items[i].id}" class="plusBtn lightBtn">+</button>
                         </div>
                         </li>` 
                         const total = items[i].qty * items[i].price;
@@ -135,6 +135,7 @@ function manageQty(el) {
                         return item.id != id
                     })
                     document.getElementById("totalOrders").innerText -=  1
+                    document.getElementById("listShower").style = 'text-shadow: none; color: #007bff!important'    
                     ref.set({items: filtered})
                 }
             // pilus    
