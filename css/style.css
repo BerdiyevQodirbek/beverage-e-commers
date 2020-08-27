@@ -42,6 +42,7 @@ body {
   border: none;
   border-radius: 10px;
   box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0143771), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0119221), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.01), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.00807786), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.00562291);
+  padding-bottom: 30px;
 }
 .card:hover {
   box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0143771), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0119221), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.01), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.00807786), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.00562291);
@@ -148,6 +149,35 @@ body {
   height: 44px;
   font-size: 2rem;
   line-height: 1px;
+}
+
+.remuve {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  height: 24px;
+  padding: 0px 2px 0px 0px;
+  width: 20px;
+  border: none;
+}
+
+.edit {
+  position: absolute;
+  left: 40px;
+  bottom: 10px;
+  height: 24px;
+  padding: 0px 2px 0px 0px;
+  width: 24px;
+  border: none;
+}
+
+.add {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  height: 30px;
+  padding: 0px 2px 0px 0px;
+  width: 80px;
 }
 
 .card-body {
@@ -334,6 +364,10 @@ body {
     height: 100px;
   }
 
+  .add {
+    width: 40px;
+  }
+
   .orderSection {
     width: 100%;
   }
@@ -358,6 +392,12 @@ body {
   border-radius: 5px;
   overflow: hidden;
   padding: 10px;
+}
+
+.message {
+  background: #fcc2c2;
+  border: 1px solid red;
+  border-radius: 0.25rem;
 }
 
 /*# sourceMappingURL=style.css.map */
