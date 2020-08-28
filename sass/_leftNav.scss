@@ -10,7 +10,7 @@
 #searchForm {
     width: 100%;
     background: #f1f6f7;
-    border-radius: 10px;
+    border-radius: 5px;
 
     input {
         width: 90%;
@@ -26,4 +26,12 @@
         padding-top: 5px;
     }
 
+}
+
+#userImg {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0px;
 }

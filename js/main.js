@@ -3,11 +3,17 @@ var r = localStorage.getItem("email");
 function expand() {
     var listGroup = document.getElementById("listGroup")
     var mainGroup = document.getElementById('mainGroup')
-
+    var filterable = document.getElementsByClassName("filterable")
+    for (let i = 0; i < filterable.length; i++) {
+        filterable[i].classList.remove("col-xl-2");
+    }
     if(window.getComputedStyle(listGroup).display === "none"){
         mainGroup.classList.add('flex1')    
-        
-    } 
+        for (let i = 0; i < filterable.length; i++) {
+            filterable[i].classList.add("col-xl-2");
+        }
+        console.log("add"); 
+    }
 }
 
 var addBtn = document.getElementById("addList");
@@ -67,8 +73,7 @@ firebase.firestore().enablePersistence()
       }
   });
 
-// auth
-
+//   A U T H
 
 auth.onAuthStateChanged((user) =>{
     if(user){        
@@ -79,13 +84,11 @@ auth.onAuthStateChanged((user) =>{
 });
 
 //     A D D   N E W   C A R D   T O   P A G E
-
 firestore.collection(r).get().then(snapshot => {
-    
     snapshot.forEach(item => {
         var data = item.data();//{name: 'Fanta', price:6700}
         var card = `
-            <div class="col-6 col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4 filterable">
+            <div class="col-6 col-lg-3 col-md-4 col-sm-6 mb-4 filterable">
                 <div class="card">
                 <img src="${data.imgUrl}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -95,7 +98,7 @@ firestore.collection(r).get().then(snapshot => {
                     <div class="display-flex">
                     <button type="button" onclick="remuve(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                     <button type="button" onclick="editModal(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToEdit"><i class="ti-pencil-alt"></i></button>
-                    <button type="button" onclick="add(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-primary add"> <i class="ti-shopping-cart"></i></button>
+                    <button type="button" onclick="add(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-primary add">Add to cart</button>
                     </div>
                 </div>
                 </div>
