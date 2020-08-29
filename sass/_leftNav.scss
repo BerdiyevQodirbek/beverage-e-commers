@@ -4,7 +4,12 @@
     position: sticky;
     top: 0;
     font-size: 20px;
+    height: 50px;
 
+    & > div {
+        height: 90%;
+        margin-top: 2px;
+    }
     
 }
 #searchForm {
@@ -17,13 +22,14 @@
         border: none;
         outline: none;
         background: transparent;
-        font-size: 18px;
+        font-size: 15px;
     }
 
     button {
         color: #657482;
         margin-right: 10px;
         padding-top: 5px;
+        font-size: 15px;
     }
 
 }

@@ -5,13 +5,13 @@
         if (orders.data() != undefined) {
             var order = orders.data().items
             if(order.length > 0){
-                document.getElementById("listShower").style = 'text-shadow: 0px 0px 1px black; color: red !important'    
+                document.getElementById("listShower").style = 'text-shadow: 0px 0px 1px black; color: #6696ff !important'    
                 reload()
             } else {
                 document.getElementById("listShower").click()
             }
         } else {
-            // console.log("empty");
+            document.getElementById("listShower").click()
         }
         
     })
@@ -74,7 +74,7 @@ function add(el) {
                         totaldoc.innerText = +total + +totaldoc.innerText    
                         document.getElementById("totalOrders").innerText = `${items.length}`
                     }
-                    document.getElementById("listShower").style = 'text-shadow: 0px 0px 3px black; color: red !important'    
+                    document.getElementById("listShower").style = 'text-shadow: 0px 0px 1px black; color: #6696ff !important'    
                 }
                 
             }).catch((err) => {

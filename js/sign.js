@@ -78,7 +78,4 @@ loginForm.addEventListener('submit', (e) => {
             document.getElementsByClassName("emailHelp")[0].classList.add("message")
             console.log(error.message);
         })
-        
-
-
 })

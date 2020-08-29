@@ -12,7 +12,7 @@ function expand() {
         for (let i = 0; i < filterable.length; i++) {
             filterable[i].classList.add("col-xl-2");
         }
-        console.log("add"); 
+        // console.log("add"); 
     }
 }
 
@@ -76,8 +76,8 @@ firebase.firestore().enablePersistence()
 //   A U T H
 
 auth.onAuthStateChanged((user) =>{
-    if(user){        
-        console.log('You are in "NIGGA"');
+    if(user.email == r){        
+        console.log('You are in "NIGGA"' + user.email);
     }else{
         location.href ='/sign.html'
     }
