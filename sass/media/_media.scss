@@ -32,4 +32,20 @@
     .orderCollapse {
         width: 45px;
     }
+    #HistoryOfModal {
+        width: 88%;
+        .btn {
+            font-size: .7rem;
+        }
+        
+        span {
+            font-size: .8rem;
+        }
+    }
+    .modal-body {
+        padding: 0.25rem;
+    }
+    .table td {
+        padding: 0.25rem;
+    }
   }

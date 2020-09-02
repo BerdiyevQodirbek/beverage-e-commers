@@ -7,8 +7,9 @@ function sell() {
     var date = d.getDate();
     var month = d.getMonth() + 1;
     var year = d.getFullYear();
-    var dateStr = date + "." + month + "." + year + "-" + hours     ;
+    var dateStr = date + "." + month + "." + year + "-" + hours;
     var saleRef = firestore.collection(r + ".sales").doc("users").collection('items').doc(dateStr)
+    var totalPr = document.getElementById('totalPrice').innerText;
     firestore.collection("admins").doc(r)
     .get().then(snap => {
         var expD = snap.data()
@@ -25,13 +26,15 @@ function sell() {
                                     firestore.collection("admins").doc(r).update({
                                         items: []
                                     }).then(() => {
+                                        saleRef.update({
+                                            total: totalPr
+                                        })
                                         document.querySelector("#orderList ul").innerHTML = ''
                                         document.getElementById('totalPrice').innerText = ''
                                         document.getElementById('totalOrders').innerText = ''
                                     }).catch((error) => {
                                         console.log(error);
                                     })
-                                    console.log("updated");
                                 }).catch((err) => {
                                     console.log(err);
                                 })
@@ -79,7 +82,76 @@ function historY() {
     .catch((error) => {
         console.log(error);
     })
+    
+}
 
+// A day ago sales
+
+function dayAgo() {
+    var d = new Date();
+    var date = d.getDate() - 1;
+    var month = d.getMonth() + 1;
+    var year = d.getFullYear();
+    var dateStr = date + "." + month + "." + year;
+    var saleRef = firestore.collection(r + ".sales").doc("users").collection('items')
+    saleRef.get().then(items => {
+        document.getElementById("Sum").innerHTML = ""
+        items.forEach(item => {
+            if (item.id.includes(dateStr)) {
+                document.getElementById('tbody').innerHTML = ""
+                document.getElementById("Sum").innerHTML += item.data().total
+                var doc = item.data().items;
+                for (let i = 0; i < doc.length; i++) {
+                    document.getElementById('tbody').insertAdjacentHTML("afterbegin",
+                    `<tr>
+                    <td>${doc[i].name}</td>
+                    <td class="price">${doc[i].price}</td>
+                    <td>${doc[i].qty}</td>
+                    <td>${doc[i].time}</td>
+                    </tr>`)
+                }
+            } 
+        })
+    })
+    
+}
+
+// Today sales
+
+function today() {
+    document.getElementById("Sum").innerHTML = ''
+    var d = new Date();
+    var date = d.getDate();
+    var month = d.getMonth() + 1;
+    var year = d.getFullYear();
+    var dateStr = date + "." + month + "." + year;
+    var saleRef = firestore.collection(r + ".sales").doc("users").collection('items')
+    saleRef.get().then(items => {
+        document.getElementById('tbody').innerHTML = ""
+        items.forEach(item => {
+            if(item.id == undefined) {
+                document.getElementById('tbody').innerHTML =
+                `<tr>
+                <td><i class="ti-face-sad" style="font-size: 20px;margin-top: 10px"></td>
+                <td class="price"><i class="ti-face-sad" style="font-size: 20px;margin-top: 10px"></td>
+                <td><i class="ti-face-sad" style="font-size: 20px;margin-top: 10px"></td>
+                <td><i class="ti-face-sad" style="font-size: 20px;margin-top: 10px"></td>
+                </tr>`
+            } else if (item.id.includes(dateStr)) {
+                document.getElementById("Sum").innerHTML += item.data().total
+                var doc = item.data().items;
+                for (let i = 0; i < doc.length; i++) {
+                    document.getElementById('tbody').innerHTML += 
+                    `<tr>
+                    <td>${doc[i].name}</td>
+                    <td class="price">${doc[i].price}</td>
+                    <td>${doc[i].qty}</td>
+                    <td>${doc[i].time}</td>
+                    </tr>`
+                }
+            } 
+        })
+    })
 }
 
 // reload the total calc
@@ -91,13 +163,13 @@ function reload(el) {
         var totaldoc = document.getElementById("totalPrice")
         totaldoc.innerText = ""
         document.querySelector("#orderList ul").innerHTML = ""
-                for (let i = 0; i < items.length; i++) {
-                    document.querySelector("#orderList ul").innerHTML += `<li class="list-group-item d-flex">
-                    <div class="info">
-                    <h5>${items[i].name}</h5>
-                    <p class="price">${items[i].price} sum</p>
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center">
+        for (let i = 0; i < items.length; i++) {
+            document.querySelector("#orderList ul").innerHTML += `<li class="list-group-item d-flex">
+            <div class="info">
+            <h5>${items[i].name}</h5>
+            <p class="price">${items[i].price} sum</p>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
                     <button onclick="manageQty(this)" data-id="${items[i].id}" class="plusBtn lightBtn">+</button>
                     <input type="number" class="cardQty mx-3" value="${items[i].qty}">
                     <button  onclick="manageQty(this)" data-id="${items[i].id}" class="minusBtn lightBtn">-</button>

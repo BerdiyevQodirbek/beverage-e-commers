@@ -211,6 +211,33 @@ body {
   padding: 3px 12px;
 }
 
+#salesHeader {
+  background-color: white;
+  z-index: 15 !important;
+  position: sticky;
+  top: 0px;
+}
+
+#HistoryOfModal {
+  width: 80%;
+  display: flex;
+  justify-content: start;
+}
+#HistoryOfModal .btn {
+  border-radius: 0px !important;
+  font-size: 0.7rem;
+}
+#HistoryOfModal span {
+  margin-right: 5px;
+  line-height: 35px;
+  font-size: 0.8rem;
+}
+
+#Sum {
+  font-weight: 700;
+  color: #6696ff;
+}
+
 .flex1 {
   flex: 1;
   max-width: 100%;
@@ -426,6 +453,24 @@ body {
 
   .orderCollapse {
     width: 45px;
+  }
+
+  #HistoryOfModal {
+    width: 88%;
+  }
+  #HistoryOfModal .btn {
+    font-size: 0.7rem;
+  }
+  #HistoryOfModal span {
+    font-size: 0.8rem;
+  }
+
+  .modal-body {
+    padding: 0.25rem;
+  }
+
+  .table td {
+    padding: 0.25rem;
   }
 }
 #sign {

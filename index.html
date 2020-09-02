@@ -85,7 +85,7 @@
                       </div>
                       <div class="form-group col-md-6">
                         <label for="" class="col-form-label">Price:</label>
-                        <input type="text" autocomplete="off" class="form-control" id="newPrice">
+                        <input type="number" autocomplete="off" class="form-control" id="newPrice">
                       </div>
                       <div class="form-group col-md-6">
                         <input type="file" class="form-control" id="newImgFile">
@@ -137,7 +137,7 @@
                       </div>
                       <div class="form-group col-md-6">
                         <label for="" class="col-form-label">Price:</label>
-                        <input type="text" autocomplete="off" class="form-control" id="updatedPrice">
+                        <input type="number" autocomplete="off" class="form-control" id="updatedPrice">
                       </div>
                       <div class="form-group col-md-6">
                         <input type="file" class="form-control" id="updatedImgFile">
@@ -174,9 +174,14 @@
             <div class="modal fade" id="ModalToHistory" tabindex="-1" role="dialog" aria-labelledby="ModalToHistory" aria-hidden="true">
               <div class="modal-dialog modal-xl">
                 <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="HistoryOfModal">Sales
-                      <button onclick="clearHistory()" class="btn ml-3 btn-outline-warning">Clear</button>
+                  <div class="modal-header" id="salesHeader">
+                    <h5 class="modal-title" id="HistoryOfModal"><span>Sales</span>
+                      <button onclick="dayAgo()" class="btn btn-outline-secondary">Yesterday</button>
+                      <button onclick="today()" class="btn btn-outline-secondary">Today</button>
+                      <button onclick="historY()" class="btn btn-outline-secondary">All</button>
+                      <button onclick="clearHistory()" class="btn btn-outline-danger" style="
+                      margin-left: auto !important;
+                  "><i class="ti-brush-alt"></i></button>
                     </h5>
                     <button onclick="clearInner()" type="button" class="close" id="historyModal-close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
@@ -195,6 +200,14 @@
                       <tbody id="tbody">
                         <!-- firebase adds --> 
                       </tbody>
+                      <tfoot id="tfooter">
+                        <tr>
+                          <td><b>Sum</b></td>
+                          <td></td>
+                          <td></td>
+                          <td id="Sum"></td>
+                        </tr>
+                      </tfoot>
                     </table>
                   </div>
                 </div>

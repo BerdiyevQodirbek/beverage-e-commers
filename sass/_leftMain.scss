@@ -201,6 +201,35 @@
     }
 }
 
+#salesHeader {
+    background-color: white;
+    z-index: 15 !important;
+    position: sticky;
+    top: 0px;
+}
+
+#HistoryOfModal {
+    width: 80%;
+    display: flex;
+    justify-content: start;
+
+    .btn {
+        border-radius: 0px !important;
+        font-size: .7rem;
+    }
+    
+    span {
+        margin-right: 5px;
+        line-height: 35px;
+        font-size: .8rem;
+    }
+}
+
+#Sum {
+    font-weight: 700;
+    color: #6696ff;
+}
+
 .flex1 {
     flex: 1;
     max-width: 100%;

@@ -22,7 +22,6 @@
 
 
 function add(el) {
-    var start = performance.now()
     var hours = document.getElementById("orderTime").innerText
     var d = new Date();
     var date = d.getDate();
@@ -58,7 +57,6 @@ function add(el) {
                     document.querySelector("#orderList ul").innerHTML = ""
                     for (let i = 0; i < items.length; i++) {
                         var end = performance.now()
-                        console.log(end- start);
                         document.querySelector("#orderList ul").innerHTML += `<li class="list-group-item d-flex">
                         <div class="info">
                         <h5>${items[i].name}</h5>

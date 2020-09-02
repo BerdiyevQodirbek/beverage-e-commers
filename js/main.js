@@ -77,7 +77,7 @@ firebase.firestore().enablePersistence()
 
 auth.onAuthStateChanged((user) =>{
     if(user.email == r){        
-        console.log('You are in "NIGGA"' + user.email);
+        // console.log('You are in "NIGGA"' + user.email);
     }else{
         location.href ='/sign.html'
     }
