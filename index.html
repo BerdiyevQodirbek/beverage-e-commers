@@ -171,15 +171,15 @@
             
             <!-- ||||||||||| M O D A L   T O   S A L E S |||||||||||-->
 
-            <div class="modal fade" id="ModalToHistory" tabindex="-1" role="dialog" aria-labelledby="ModalToHistory" aria-hidden="true">
+            <div class="modal fade pr-0" id="ModalToHistory" tabindex="-1" role="dialog" aria-labelledby="ModalToHistory" aria-hidden="true">
               <div class="modal-dialog modal-xl">
-                <div class="modal-content">
+                <div class="modal-content" style="min-height: 80vh;">
                   <div class="modal-header" id="salesHeader">
                     <h5 class="modal-title" id="HistoryOfModal"><span>Sales</span>
                       <button onclick="dayAgo()" class="btn btn-outline-secondary">Yesterday</button>
                       <button onclick="today()" class="btn btn-outline-secondary">Today</button>
                       <button onclick="historY()" class="btn btn-outline-secondary">All</button>
-                      <button onclick="clearHistory()" class="btn btn-outline-danger" style="
+                      <button onclick="clearHistory(this)" class="btn btn-outline-danger" data-id="" id="clearHistory" style="
                       margin-left: auto !important;
                   "><i class="ti-brush-alt"></i></button>
                     </h5>
@@ -200,15 +200,12 @@
                       <tbody id="tbody">
                         <!-- firebase adds --> 
                       </tbody>
-                      <tfoot id="tfooter">
-                        <tr>
-                          <td><b>Sum</b></td>
-                          <td></td>
-                          <td></td>
-                          <td id="Sum"></td>
-                        </tr>
-                      </tfoot>
                     </table>
+                  </div>
+                  <div class="modal-footer">
+                        <span><b>Sum</b></span>
+                        <span id="Sum"></span>
+                      </tr>
                   </div>
                 </div>
               </div>

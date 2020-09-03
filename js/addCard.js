@@ -49,7 +49,7 @@ function addCard(el) {
                       <div class="display-flex">
                       <button type="button" onclick="remuve(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                       <button type="button" onclick="editModal(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToEdit"><i class="ti-pencil-alt"></i></button>
-                      <button type="button" onclick="add(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-primary add"><i class="ti-shopping-cart"></i></button>
+                      <button type="button" onclick="add(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-primary add">Add to cart</button>
                       </div>
                   </div>
                   </div>
@@ -96,7 +96,7 @@ function addCard(el) {
                       <div class="display-flex">
                       <button type="button" onclick="remuve(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                       <button type="button" onclick="editModal(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToEdit"><i class="ti-pencil-alt"></i></button>
-                      <button type="button" onclick="add(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-primary add"><i class="ti-shopping-cart"></i></button>
+                      <button type="button" onclick="add(this)" data-img="${imgUrl}" data-id="${updatedAt}" class="btn btn-outline-primary add">Add to cart</button>
                       </div>
                   </div>
                   </div>

@@ -61,13 +61,17 @@ function sell() {
 }
 
 // Show history from firebase sales 
-
 function historY() {
-    document.getElementById('tbody').innerHTML = ""
+    var historyClearB = document.getElementById('clearHistory');
+    historyClearB.dataset.id = '';
+    historyClearB.dataset.id = 'All';
+    clearInner();
     var historyRef = firestore.collection(r + ".sales").doc("users").collection('items')
     historyRef.get().then(data => {
+        document.getElementById("Sum").innerHTML = ""
         data.forEach(doc => {
             var item = doc.data().items
+            document.getElementById("Sum").innerHTML = +doc.data().total + +document.getElementById("Sum").innerHTML;
             for (let i = 0; i < item.length; i++) {
                 document.getElementById('tbody').insertAdjacentHTML("afterbegin",
                 `<tr>
@@ -93,13 +97,16 @@ function dayAgo() {
     var month = d.getMonth() + 1;
     var year = d.getFullYear();
     var dateStr = date + "." + month + "." + year;
+    var historyClearB = document.getElementById('clearHistory');
+    historyClearB.dataset.id = '';
+    historyClearB.dataset.id = dateStr;
     var saleRef = firestore.collection(r + ".sales").doc("users").collection('items')
     saleRef.get().then(items => {
         document.getElementById("Sum").innerHTML = ""
+        clearInner();
         items.forEach(item => {
             if (item.id.includes(dateStr)) {
-                document.getElementById('tbody').innerHTML = ""
-                document.getElementById("Sum").innerHTML += item.data().total
+                document.getElementById("Sum").innerText = +item.data().total + +document.getElementById("Sum").innerText; 
                 var doc = item.data().items;
                 for (let i = 0; i < doc.length; i++) {
                     document.getElementById('tbody').insertAdjacentHTML("afterbegin",
@@ -125,9 +132,12 @@ function today() {
     var month = d.getMonth() + 1;
     var year = d.getFullYear();
     var dateStr = date + "." + month + "." + year;
+    var historyClearB = document.getElementById('clearHistory');
+    historyClearB.dataset.id = '';
+    historyClearB.dataset.id = dateStr;
     var saleRef = firestore.collection(r + ".sales").doc("users").collection('items')
     saleRef.get().then(items => {
-        document.getElementById('tbody').innerHTML = ""
+        clearInner();
         items.forEach(item => {
             if(item.id == undefined) {
                 document.getElementById('tbody').innerHTML =
@@ -138,7 +148,7 @@ function today() {
                 <td><i class="ti-face-sad" style="font-size: 20px;margin-top: 10px"></td>
                 </tr>`
             } else if (item.id.includes(dateStr)) {
-                document.getElementById("Sum").innerHTML += item.data().total
+                document.getElementById("Sum").innerText = +item.data().total + +document.getElementById("Sum").innerText;
                 var doc = item.data().items;
                 for (let i = 0; i < doc.length; i++) {
                     document.getElementById('tbody').innerHTML += 
@@ -170,9 +180,9 @@ function reload(el) {
             <p class="price">${items[i].price} sum</p>
             </div>
             <div class="d-flex justify-content-center align-items-center">
-                    <button onclick="manageQty(this)" data-id="${items[i].id}" class="plusBtn lightBtn">+</button>
-                    <input type="number" class="cardQty mx-3" value="${items[i].qty}">
-                    <button  onclick="manageQty(this)" data-id="${items[i].id}" class="minusBtn lightBtn">-</button>
+            <button  onclick="manageQty(this)" data-id="${items[i].id}" class="minusBtn lightBtn">-</button>
+            <input type="number" class="cardQty mx-3" value="${items[i].qty}">
+            <button onclick="manageQty(this)" data-id="${items[i].id}" class="plusBtn lightBtn">+</button>
                     </div>
                     </li>` 
                     const total = items[i].qty * items[i].price;
@@ -203,24 +213,37 @@ function clearInner() {
 }
 
 //  Clear history 
-function clearHistory() {
-    conf = confirm("Do you want to clear the history?")
+function clearHistory(el) {
+    var dataId = el.dataset.id;
+    conf = confirm("Do you want to clear the history about " + dataId + "?")
     if (conf) {
         var historyRef = firestore.collection(r + ".sales").doc("users").collection('items')
         historyRef.get().then(data => {
             data.forEach(doc => {
-               historyRef.doc(doc.id).delete().then(() => {
-                   document.getElementById("tbody").innerHTML = ""
-               })
-               .catch((error) => {
-                   console.log(error);
-               })
+                if (doc.id.includes(dataId)) {
+                    historyRef.doc(doc.id).delete().then(() => {
+                        clearInner();
+                        document.getElementById("Sum").innerText = "";
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+                } else if(dataId == "All") {
+                    historyRef.doc(doc.id).delete().then(() => {
+                        clearInner();
+                        document.getElementById("Sum").innerText = "";
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+
+                }
             })
         })
         .catch((error) => {
             console.log(error);
         })
     } else {
-        console.log("Be carefull");
+        // console.log("Be carefull");
     }
 }

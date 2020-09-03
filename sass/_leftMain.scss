@@ -224,7 +224,14 @@
         font-size: .8rem;
     }
 }
-
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    bottom: 0;
+    background: white;
+    z-index: 2;
+}
 #Sum {
     font-weight: 700;
     color: #6696ff;
