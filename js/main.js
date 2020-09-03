@@ -167,7 +167,6 @@ function logOUT() {
         auth.signOut().then(()=>{
             console.log('user signed out');
             location.href = '/sign.html';
-            console.log("damn maaan");
         }).catch(()=>{
             console.log('error');
         })
