@@ -116,7 +116,6 @@ function manageQty(el) {
                             qty.stepDown(1)
                             item.qty--;
                             document.getElementById("totalPrice").innerText -=  item.price
-                            console.log(item.qty);
                             return item
                         }
                         return item;
@@ -147,7 +146,6 @@ function manageQty(el) {
                         item.qty++;
                         var total = document.getElementById("totalPrice")
                         total.innerText = +item.price + +total.innerText
-                        console.log(item.qty);
                         return item
                     }
                     return item;

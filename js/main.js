@@ -76,10 +76,10 @@ firebase.firestore().enablePersistence()
 //   A U T H
 
 auth.onAuthStateChanged((user) =>{
-    if(user.email == r){        
+    if(user && user.email == r){        
         // console.log('You are in "NIGGA"' + user.email);
     }else{
-        location.href ='/sign.html'
+        location.href = location.pathname+'sign.html'
     }
 });
 
@@ -98,7 +98,7 @@ firestore.collection(r).get().then(snapshot => {
                     <div class="display-flex">
                     <button type="button" onclick="remuve(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-danger my-1 remuve"><i class="ti-trash"></i></button>
                     <button type="button" onclick="editModal(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-warning my-1 edit" data-toggle="modal" data-target="#ModalToEdit"><i class="ti-pencil-alt"></i></button>
-                    <button type="button" onclick="add(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-primary add">Add to cart</button>
+                    <button type="button" onclick="add(this)" data-img="${data.imgUrl}" data-id="${item.id}" class="btn btn-outline-primary add"><i class="ti-shopping-cart"></i></button>
                     </div>
                 </div>
                 </div>

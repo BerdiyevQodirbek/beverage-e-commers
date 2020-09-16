@@ -39,7 +39,7 @@ function calc(el) {
             var fireData = item.data()
             if (fireData.name.toUpperCase().includes(name)) {
                 const card = `
-                    <div class="col-6 col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4 filterable">
+                    <div class="col-6 col-lg-3 col-md-4 col-sm-6 mb-4 filterable">
                         <div class="card">
                         <img src="${fireData.imgUrl}" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -57,7 +57,8 @@ function calc(el) {
                 `;
                 document.querySelector('#mainGroup >.row').innerHTML += card;
             } else {
-                //  SO THERE IS NO SUCH DATA
+                // var noData = document.querySelector('#mainGroup >.row');
+                // noData.innerHTML = `<img src="https://i.pinimg.com/originals/c9/22/68/c92268d92cf2dbf96e3195683d9e14fb.png" class="noDataImg">`;
             }
         })
     })
@@ -72,7 +73,6 @@ function calc(el) {
 
 //    C A L C U L A T E    A L L
 function All(el) {
-
         document.querySelector("#mainGroup > div").innerHTML = ``
 
         firestore.collection(r).get().then(snapshot => {
@@ -80,7 +80,7 @@ function All(el) {
             snapshot.forEach(item => {
                 const data= item.data();//{name: 'Fanta', price:6700}
                 const card = `
-                    <div class="col-6 col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4 filterable">
+                    <div class="col-6 col-lg-3 col-md-4 col-sm-6 mb-4 filterable">
                         <div class="card">
                         <img src="${data.imgUrl}" class="card-img-top" alt="...">
                         <div class="card-body">

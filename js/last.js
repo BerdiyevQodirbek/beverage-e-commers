@@ -68,10 +68,13 @@ function historY() {
     clearInner();
     var historyRef = firestore.collection(r + ".sales").doc("users").collection('items')
     historyRef.get().then(data => {
+        var totalSum = 0;
         document.getElementById("Sum").innerHTML = ""
         data.forEach(doc => {
             var item = doc.data().items
-            document.getElementById("Sum").innerHTML = +doc.data().total + +document.getElementById("Sum").innerHTML;
+            totalSum = totalSum + +doc.data().total; 
+            var t = totalSum.toLocaleString()
+            document.getElementById("Sum").innerHTML = t;
             for (let i = 0; i < item.length; i++) {
                 document.getElementById('tbody').insertAdjacentHTML("afterbegin",
                 `<tr>
@@ -103,10 +106,13 @@ function dayAgo() {
     var saleRef = firestore.collection(r + ".sales").doc("users").collection('items')
     saleRef.get().then(items => {
         document.getElementById("Sum").innerHTML = ""
+        var totalSum = 0;
         clearInner();
         items.forEach(item => {
             if (item.id.includes(dateStr)) {
-                document.getElementById("Sum").innerText = +item.data().total + +document.getElementById("Sum").innerText; 
+                totalSum = totalSum + +item.data().total; 
+                var t = totalSum.toLocaleString()
+                document.getElementById("Sum").innerHTML = t;
                 var doc = item.data().items;
                 for (let i = 0; i < doc.length; i++) {
                     document.getElementById('tbody').insertAdjacentHTML("afterbegin",
@@ -138,6 +144,7 @@ function today() {
     var saleRef = firestore.collection(r + ".sales").doc("users").collection('items')
     saleRef.get().then(items => {
         clearInner();
+        var totalSum = 0;
         items.forEach(item => {
             if(item.id == undefined) {
                 document.getElementById('tbody').innerHTML =
@@ -148,7 +155,9 @@ function today() {
                 <td><i class="ti-face-sad" style="font-size: 20px;margin-top: 10px"></td>
                 </tr>`
             } else if (item.id.includes(dateStr)) {
-                document.getElementById("Sum").innerText = +item.data().total + +document.getElementById("Sum").innerText;
+                totalSum = totalSum + +item.data().total; 
+                var t = totalSum.toLocaleString()
+                document.getElementById("Sum").innerHTML = t;
                 var doc = item.data().items;
                 for (let i = 0; i < doc.length; i++) {
                     document.getElementById('tbody').innerHTML += 

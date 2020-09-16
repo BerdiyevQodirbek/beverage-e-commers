@@ -71,7 +71,7 @@ loginForm.addEventListener('submit', (e) => {
             document.getElementsByClassName("emailHelp")[0].innerHTML = `We'll never share your email with anyone else`  
             document.getElementsByClassName("emailHelp")[0].classList.remove("message")
             localStorage.setItem("email", email)
-            location.href = '/index.html'
+            location.href = location.pathname+ 'index.html'
         })
         .catch((error)=>{
             document.getElementsByClassName("emailHelp")[0].innerHTML = `${error.message}` 

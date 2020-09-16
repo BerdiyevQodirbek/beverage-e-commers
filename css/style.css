@@ -188,7 +188,7 @@ body {
   bottom: 10px;
   height: 30px;
   padding: 0px 2px 0px 0px;
-  width: 120px;
+  width: 100px;
   border: none;
 }
 
@@ -245,6 +245,11 @@ body {
 #Sum {
   font-weight: 700;
   color: #6696ff;
+}
+
+.noDataImg {
+  object-fit: cover;
+  width: 100%;
 }
 
 .flex1 {
