@@ -77,9 +77,10 @@ firebase.firestore().enablePersistence()
 
 auth.onAuthStateChanged((user) =>{
     if(user && user.email == r){        
-        // console.log('You are in "NIGGA"' + user.email);
+        console.log('You are in "NIGGA"' + user.email);
     }else{
-        location.href = location.pathname+'sign.html'
+        console.log("heey");
+        location.href = location.href.replace('index','sign');
     }
 });
 
@@ -166,7 +167,7 @@ function logOUT() {
     if (c) {
         auth.signOut().then(()=>{
             console.log('user signed out');
-            location.href = '/sign.html';
+            location.href = location.href.replace('index','sign');
         }).catch(()=>{
             console.log('error');
         })
