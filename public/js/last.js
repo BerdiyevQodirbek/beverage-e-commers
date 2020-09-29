@@ -190,7 +190,7 @@ function reload(el) {
             </div>
             <div class="d-flex justify-content-center align-items-center">
             <button  onclick="manageQty(this)" data-id="${items[i].id}" class="minusBtn lightBtn">-</button>
-            <input type="number" class="cardQty mx-3" value="${items[i].qty}">
+            <input type="number" class="cardQty mx-3" readonly="readonly" value="${items[i].qty}">
             <button onclick="manageQty(this)" data-id="${items[i].id}" class="plusBtn lightBtn">+</button>
                     </div>
                     </li>` 
