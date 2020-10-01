@@ -2,14 +2,7 @@
 
   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyANa57oLK9jZTfDTm6CMmeZs-VquG3p2Rc",
-    authDomain: "beveragefirebase.firebaseapp.com",
-    databaseURL: "https://beveragefirebase.firebaseio.com",
-    projectId: "beveragefirebase",
-    storageBucket: "beveragefirebase.appspot.com",
-    messagingSenderId: "715061288442",
-    appId: "1:715061288442:web:d76b29e73347b0ee965843",
-    measurementId: "G-SLMM54B26R"
+    // your Config
   };
   // Initialize Firebase    
   

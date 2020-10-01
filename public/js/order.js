@@ -56,7 +56,6 @@ function add(el) {
                     totaldoc.innerText = ""
                     document.querySelector("#orderList ul").innerHTML = ""
                     for (let i = 0; i < items.length; i++) {
-                        var end = performance.now()
                         document.querySelector("#orderList ul").innerHTML += `<li class="list-group-item d-flex">
                         <div class="info">
                         <h5>${items[i].name}</h5>
